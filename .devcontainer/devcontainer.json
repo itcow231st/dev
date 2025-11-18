@@ -1,0 +1,20 @@
+{
+  "name": "Laravel Codespace",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/var/www/html",
+  "postCreateCommand": "composer install || true",
+
+  "forwardPorts": [8000, 3306, 8080],
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "onecentlin.laravel-blade",
+        "onecentlin.laravel5-snippets",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  }
+}
