@@ -3138,14 +3138,14 @@ fieldset:disabled .btn {
 }
 
 .btn-primary {
-    color: #000;
+    color: #ffffff;
     background-color: #3377ff;
     border-color: #3377ff
 }
 
 .btn-primary:hover {
-    color: #000;
-    background-color: #4783fb;
+    color: #ffffff;
+    background-color: #44a6ecbc;
     border-color: #44a6ec
 }
 
