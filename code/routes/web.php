@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InteriorController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ServiceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -35,5 +36,13 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::get('/service/edit/{id}', [ServiceController::class, 'edit'])->name('service.edit');
     Route::post('/service/update', [ServiceController::class, 'update'])->name('service.update');
     Route::delete('/service/destroy', [ServiceController::class, 'destroy'])->name('service.destroy');
+
+    //Product Routes
+    Route::get('/product', [ProductController::class,'index'])->name('product.index');
+    Route::get('/product/create', [ProductController::class,'create'])->name('product.create');
+    Route::post('/product/store', [ProductController::class,'store'])->name('product.store');
+    Route::get('/product/edit/{id}', [ProductController::class,'edit'])->name('product.edit');
+    Route::post('/product/update', [ProductController::class,'update'])->name('product.update');
+    Route::delete('/product/destroy', [ProductController::class,'destroy'])->name('product.destroy');
 });
 

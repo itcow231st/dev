@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Interior;
 use App\Services\InteriorService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Rules\In;
+
 
 class InteriorController extends Controller
 {

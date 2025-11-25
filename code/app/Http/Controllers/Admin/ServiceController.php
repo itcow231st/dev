@@ -42,6 +42,22 @@ class ServiceController extends Controller
 
     public function update(Request $request)
     {
-        
+        try {
+            $this->serviceService->updateService($request->all());
+            return redirect()->route('admin.service.index')->with('success', 'Service updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'An error occurred while updating the service: ' . $e->getMessage());
+        }
+    }
+
+    public function destroy(Request $request)
+    {
+        try {
+           $id = $request->id;
+           $this->serviceService->destroyService($id);
+           return redirect()->route('admin.service.index')->with('success', 'Service deleted successfully.');
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => 'An error occurred while deleting the service: ' . $e->getMessage()]);
+        }
     }
 }

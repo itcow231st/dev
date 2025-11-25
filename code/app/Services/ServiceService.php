@@ -32,4 +32,27 @@ class ServiceService
            
         });
     }
+
+    public function updateService($data)
+    {
+        return DB::transaction(function () use ($data) {
+            $service = $this->model->find($data['id']);
+            if ($service) {
+                $service->name = $data['name'];
+                $service->save();
+            }
+            return $service;
+        });
+    }
+
+    public function destroyService($id)
+    {
+        return DB::transaction(function () use ($id) {
+            $service = $this->model->find($id);
+            if ($service) {
+                $service->delete();
+            }
+            return $service;
+        });
+    }
 }
