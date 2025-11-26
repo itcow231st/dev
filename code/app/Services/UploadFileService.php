@@ -5,7 +5,7 @@ namespace App\Services;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
-class UploadService
+class UploadFileService
 {
     /**
      * Upload 1 hoặc nhiều file

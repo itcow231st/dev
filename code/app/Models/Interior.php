@@ -16,4 +16,9 @@ class Interior extends Model
         'name',
         'slug',
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Products::class, 'interior_id');
+    }
 }

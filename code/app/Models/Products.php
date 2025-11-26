@@ -14,8 +14,13 @@ class Products extends Model
         'name',
         'description',
         'price',
-        'imgage_url',
+        'image_url',
         'slug',
+        'interior_id',
     ];
 
+    public function interior()
+    {
+        return $this->belongsTo(Interior::class, 'interior_id');
+    }
 }

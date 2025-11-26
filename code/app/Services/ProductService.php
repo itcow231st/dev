@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 class ProductService
 {
     protected $model;
+
     public function __construct()
     {
         $this->model = new Products();
@@ -15,7 +16,7 @@ class ProductService
 
     public function getAllProducts()
     {
-       return $this->model->all();
+       return $this->model->with('interior')->get();
     }
 
     public function getProductById($id)

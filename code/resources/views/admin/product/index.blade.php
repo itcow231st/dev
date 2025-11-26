@@ -18,6 +18,7 @@
                         <th>Price</th>
                         <th>IMG</th>
                         <th>Slug</th>
+                        <th>Interior</th>
                         <th>Edit</th>
                         <th>Remove</th>
                     </tr>
@@ -30,6 +31,7 @@
                         <th>Price</th>
                         <th>IMG</th>
                         <th>Slug</th>
+                        <th>Interior</th>
                         <th>Edit</th>
                         <th>Remove</th>
                     </tr>
@@ -38,10 +40,12 @@
                     @foreach ($products as $product)
                         <tr>
                             <td>{{ $product->id }}</td>
+                            <td>{{ $product->name }}</td>
                             <td>{{ $product->description }}</td>
                             <td>{{ $product->price }}</td>
-                            <td>{{ $product->image_url }}</td>
+                            <td><img src="{{config('url.product') . $product->image_url }}" width="100"></td>
                             <td>{{ $product->slug }}</td>
+                            <td>{{ $product->interior->name }}</td>
                             <td><a href="{{ route('admin.product.edit', $product->id) }}" class="btn btn-warning">Edit</a></td>
                             <td>
                                 <form method="POST" action="{{ route('admin.product.destroy') }}">

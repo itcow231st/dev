@@ -1,0 +1,33 @@
+@extends('admin.layouts.master')
+@section('content')
+     <h1>Create New Product</h1>
+    <form method="POST" action="{{ route('admin.product.store') }}" enctype="multipart/form-data">
+        @csrf
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description"></textarea> 
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" class="form-control" id="price" name="price" required>
+            </div>
+            <div class="mb-3">
+                <label for="image_url" class="form-label">Image URL</label>
+                <input type="file" class="form-control" id="image_url" name="image_url" >
+            </div>  
+            <div class="mb-3">
+                <label for="interior_id" class="form-label">Interior</label>
+                <select class="form-select" id="interior_id" name="interior_id" required>
+                    <option value="">Select Interior</option>
+                    @foreach($interiors as $interior)
+                        <option value="{{ $interior->id }}">{{ $interior->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+@endsection
