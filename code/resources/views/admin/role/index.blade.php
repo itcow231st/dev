@@ -1,21 +1,19 @@
 @extends('admin.layouts.master')
 @section('content')
-    <h1>Service Management</h1>
-    <p>Welcome to the service Management Dashboard.</p>
+    <h1>Role Management</h1>
+    <p>Welcome to the role Management Dashboard.</p>
     <div class="card mb-4">
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
             DataTable Example
         </div>
         <div class="card-body">
-            <a href="{{ route('admin.service.create') }}" class="btn btn-primary mb-3">Create New Service</a>
+            <a href="{{ route('admin.role.create') }}" class="btn btn-primary mb-3">Create New Role</a>
             <table id="datatablesSimple">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>IMG</th>
-                        <th>Slug</th>
                         <th>Edit</th>
                         <th>Remove</th>
                     </tr>
@@ -24,25 +22,21 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>IMG</th>
-                        <th>Slug</th>
                         <th>Edit</th>
                         <th>Remove</th>
                     </tr>
                 </tfoot>
                 <tbody>
-                    @foreach ($services as $service)
+                    @foreach ($roles as $role)
                         <tr>
-                            <td>{{ $service->id }}</td>
-                            <td>{{ $service->name }}</td>
-                             <td><img src="{{config('url.product') . $service->image_url }}" width="100"></td>
-                            <td>{{ $service->slug }}</td>
-                            <td><a href="{{ route('admin.service.edit', $service->id) }}" class="btn btn-warning">Edit</a></td>
+                            <td>{{ $role->id }}</td>
+                            <td>{{ $role->name }}</td>
+                            <td><a href="{{ route('admin.role.edit', $role->id) }}" class="btn btn-warning">Edit</a></td>
                             <td>
-                                <form method="POST" action="{{ route('admin.service.destroy') }}">
+                                <form method="POST" action="{{ route('admin.role.destroy') }}">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="hidden" name="id" value="{{ $service->id }}">
+                                    <input type="hidden" name="id" value="{{ $role->id }}">
                                     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                                 </form>
                             </td>

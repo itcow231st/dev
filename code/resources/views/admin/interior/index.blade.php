@@ -14,6 +14,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>IMG</th>
                         <th>Slug</th>
                         <th>Edit</th>
                         <th>Remove</th>
@@ -23,6 +24,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>IMG</th>
                         <th>Slug</th>
                         <th>Edit</th>
                         <th>Remove</th>
@@ -33,6 +35,7 @@
                         <tr>
                             <td>{{ $interior->id }}</td>
                             <td>{{ $interior->name }}</td>
+                            <td><img src="{{config('url.product') . $interior->image_url }}" width="100"></td>
                             <td>{{ $interior->slug }}</td>
                             <td><a href="{{ route('admin.interior.edit', $interior->id) }}" class="btn btn-warning">Edit</a></td>
                             <td>

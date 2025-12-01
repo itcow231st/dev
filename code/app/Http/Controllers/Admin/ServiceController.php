@@ -4,14 +4,17 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Services\ServiceService;
+use App\Services\UploadFileService;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
     protected $serviceService;
+    protected $uploadService;
     public function __construct()
     {
         $this->serviceService = new ServiceService();
+        $this->uploadService = new UploadFileService();
     }
 
     public function index()
@@ -27,7 +30,12 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
        try {
-           $this->serviceService->createService($request->all());
+         $data = $request->all();
+            if($data['image_url']){
+                $image = $this->uploadService->upload($request->file('image_url'), 'services');
+                $data['image_url'] = $image;
+            }
+           $this->serviceService->createService($data);
            return redirect()->route('admin.service.index')->with('success', 'Service created successfully.');
        } catch (\Exception $e) {
            return redirect()->back()->with('error', 'An error occurred while creating the service: ' . $e->getMessage());
@@ -43,7 +51,14 @@ class ServiceController extends Controller
     public function update(Request $request)
     {
         try {
-            $this->serviceService->updateService($request->all());
+             $data = $request->all();
+            if(isset($data['image_url'])){
+                $image = $this->uploadService->upload($request->file('image_url'), 'services');
+                $data['image_url'] = $image;
+            }else{
+                $data['image_url'] = $data['image_url_old'];
+            }
+            $this->serviceService->updateService($data);
             return redirect()->route('admin.service.index')->with('success', 'Service updated successfully.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'An error occurred while updating the service: ' . $e->getMessage());

@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\DB;
 class ServiceService
 {
     protected $model;
+    protected $uploadService;
     public function __construct()
     {
         $this->model = new Service();
+        $this->uploadService = new UploadFileService();
     }
 
     public function getAllServices()
@@ -26,9 +28,7 @@ class ServiceService
     public function createService($data)
     {
         return DB::transaction(function () use ($data) {
-            return $this->model->create([
-                'name' => $data['name'],
-            ]);
+            return $this->model->create($data);
            
         });
     }
@@ -38,8 +38,8 @@ class ServiceService
         return DB::transaction(function () use ($data) {
             $service = $this->model->find($data['id']);
             if ($service) {
-                $service->name = $data['name'];
-                $service->save();
+                $service->update($data);
+                $this->uploadService->delete($data['image_url_old']);
             }
             return $service;
         });
@@ -50,6 +50,7 @@ class ServiceService
         return DB::transaction(function () use ($id) {
             $service = $this->model->find($id);
             if ($service) {
+                $this->uploadService->delete($service->image_url);
                 $service->delete();
             }
             return $service;

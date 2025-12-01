@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\DB;
 class InteriorService
 {
     protected $model;
+    protected $uploadService;
     public function __construct()
     {
         $this->model = new Interior();
+        $this->uploadService = new UploadFileService();
     }
 
     public function getAllInteriors()
@@ -34,7 +36,10 @@ class InteriorService
     {
         return DB::transaction(function () use ($id, $data) {
             $interior = $this->model->findOrFail($id);
-            $interior->update($data);
+            if($interior){
+                $interior->update($data);
+                $this->uploadService->delete($data['image_url_old']);
+            }
             return $interior;
         });
     }
@@ -42,7 +47,11 @@ class InteriorService
     {
         return DB::transaction(function () use ($id) {
             $interior = $this->model->findOrFail($id);
-            return $interior->delete();
+            if($interior){
+                $this->uploadService->delete($interior->image_url);
+                $interior->delete();
+            }
+            return $interior;
         });
     }
 }

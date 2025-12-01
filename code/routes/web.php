@@ -1,11 +1,17 @@
 <?php
 
+use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InteriorController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\ServiceController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Middleware\AdminMiddleware;
+
+use function Symfony\Component\String\s;
 
 Route::name('home.')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
@@ -20,7 +26,12 @@ Route::name('home.')->group(function () {
 });
 
 Route::name('admin.')->prefix('admin')->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('index');
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'processLogin'])->name('login.process');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+    
+    Route::middleware([AdminMiddleware::class])->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('index');
     // Interior Routes
     Route::get('/interior', [InteriorController::class, 'index'])->name('interior.index');
     Route::get('/interior/create', [InteriorController::class, 'create'])->name('interior.create');
@@ -44,5 +55,23 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::get('/product/edit/{id}', [ProductController::class,'edit'])->name('product.edit');
     Route::post('/product/update', [ProductController::class,'update'])->name('product.update');
     Route::delete('/product/destroy', [ProductController::class,'destroy'])->name('product.destroy');
+
+    //Role Routes
+    Route::get('/role', [RoleController::class, 'index'])->name('role.index');
+    Route::get('/role/create', [RoleController::class, 'create'])->name('role.create');
+    Route::post('/role/store', [RoleController::class, 'store'])->name('role.store');
+    Route::get('/role/edit/{id}', [RoleController::class, 'edit'])->name('role.edit');
+    Route::post('/role/update', [RoleController::class, 'update'])->name('role.update');
+    Route::delete('/role/destroy', [RoleController::class, 'destroy'])->name('role.destroy');
+
+    //Account Routes
+    Route::get('/account', [AccountController::class, 'index'])->name('account.index');
+    Route::get('/account/create', [AccountController::class, 'create'])->name('account.create');
+    Route::post('/account/store', [AccountController::class,'store'])->name('account.store');  
+    Route::get('/account/edit/{id}', [AccountController::class, 'edit'])->name('account.edit');
+    Route::post('/account/update', [AccountController::class, 'update'])->name('account.update');
+    Route::delete('/account/destroy', [AccountController::class, 'destroy'])->name('account.destroy');
+
+    });
 });
 

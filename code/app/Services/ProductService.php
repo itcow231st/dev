@@ -8,10 +8,11 @@ use Illuminate\Support\Facades\DB;
 class ProductService
 {
     protected $model;
-
+    protected $uploadService;
     public function __construct()
     {
         $this->model = new Products();
+        $this->uploadService = new UploadFileService();
     }
 
     public function getAllProducts()
@@ -37,6 +38,7 @@ class ProductService
             $product = $this->model->find($id);
             if ($product) {
                 $product->update($data);
+                $this->uploadService->delete($data['image_url_old']);
             }
             return $product;
         });
@@ -48,6 +50,7 @@ class ProductService
             $product = $this->model->find($id);
             if ($product) {
                 $product->delete();
+                $this->uploadService->delete($product->image_url);
             }
             return $product;
         });

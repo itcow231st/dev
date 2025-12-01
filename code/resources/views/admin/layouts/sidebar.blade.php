@@ -63,6 +63,14 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Products
                             </a>
+                              <a class="nav-link" href="{{ route('admin.role.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Roles
+                            </a>
+                              <a class="nav-link" href="{{ route('admin.account.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Accounts
+                            </a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

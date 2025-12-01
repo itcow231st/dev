@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Carbon\Carbon;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
@@ -44,7 +45,7 @@ class UploadFileService
      */
     private function uploadSingle(UploadedFile $file, string $folder)
     {
-        $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+        $fileName = Carbon::now()->toDateString() . '_'. time(). '.' . $file->getClientOriginalExtension();
         return $file->storeAs($folder, $fileName, 'public');
     }
 
