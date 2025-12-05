@@ -1,22 +1,26 @@
 @extends('layouts.master')
 @section('css')
-<style>
-.fixed-image {
-    height: 200px;         /* chỉnh theo ý bạn */
-    width: 100%;
-    object-fit: cover;     /* giúp ảnh không méo */
-    border-radius: 12px;
-}
-.vesitable-item {
-    height: 540px;        /* chỉnh theo ý bạn */
-    overflow: hidden;
-}
+    <style>
+        .fixed-image {
+            height: 200px;
+            /* chỉnh theo ý bạn */
+            width: 100%;
+            object-fit: cover;
+            /* giúp ảnh không méo */
+            border-radius: 12px;
+        }
 
-.vesitable-img img {
-    height: 280px;
-    object-fit: cover;
-}
-</style>
+        .vesitable-item {
+            height: 540px;
+            /* chỉnh theo ý bạn */
+            overflow: hidden;
+        }
+
+        .vesitable-img img {
+            height: 280px;
+            object-fit: cover;
+        }
+    </style>
 @endsection
 @section('content')
     <!-- Hero Start -->
@@ -38,13 +42,12 @@
                     <div id="carouselId" class="carousel slide position-relative" data-bs-ride="carousel">
                         <div class="carousel-inner" role="listbox">
                             <div class="carousel-item active rounded">
-                                <img src="https://rubicmarketing.com/wp-content/uploads/2021/09/thiet-ke-banner-quang-cao-noi-that-2.jpg" class="img-fluid w-100 h-100 bg-secondary rounded"
-                                    alt="First slide">
-                                <a href="#" class="btn px-4 py-2 text-white rounded">Fruites</a>
+                                <img src="https://rubicmarketing.com/wp-content/uploads/2021/09/thiet-ke-banner-quang-cao-noi-that-2.jpg"
+                                    class="img-fluid w-100 h-100 bg-secondary rounded" alt="First slide">
                             </div>
                             <div class="carousel-item rounded">
-                                <img src="https://haitran.com.vn/wp-content/uploads/2022/10/Bien-quang-cao-3D-ngoai-troi.png" class="img-fluid w-100 h-100 rounded" alt="Second slide">
-                                <a href="#" class="btn px-4 py-2 text-white rounded">Vesitables</a>
+                                <img src="https://haitran.com.vn/wp-content/uploads/2022/10/Bien-quang-cao-3D-ngoai-troi.png"
+                                    class="img-fluid w-100 h-100 rounded" alt="Second slide">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselId"
@@ -119,62 +122,66 @@
     <!-- Featurs Section End -->
 
 
-    <!-- Fruits Shop Start-->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="tab-class text-center">
-                <div class="row g-4 mb-5">
-                    <div class="col-lg-4 text-start">
-                        <h1>Dịch Vụ</h1>
-                    </div>
-                    <div class="col-lg-8 text-end">
-                        <ul class="nav nav-pills d-inline-flex text-center mb-5">
-                            <li class="nav-item">
-                                <a class="d-flex m-2 py-2 bg-light rounded-pill active" href="#">
-                                    <span class="text-dark" style="width: 130px;">Xem thêm</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="text-center">
-                        <a href="#"><img src="https://bienhieudep.vn/wp-content/uploads/2019/08/bien-mat-dung-alu-chu-nhom.jpg" class="img-fluid rounded fixed-image" alt=""></a>
-                        <div class="py-4">
-                            <a href="#" class="h5">Biển alu</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="text-center">
-                        <img src="https://ledcolour.com/wp-content/uploads/2013/08/945321_463415263749947_417188877_n.jpg" class="img-fluid rounded fixed-image" alt="">
-                        <div class="py-4">
-                            <a href="#" class="h5">Biển led</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="text-center">
-                        <img src="https://thietkeinanbanghieu.com/wp-content/uploads/2024/04/bien-quang-cao-hop-den-bat-hiflex-2.jpg" class="img-fluid rounded fixed-image" alt="">
-                        <div class="py-4">
-                            <a href="#" class="h5">Biển hộp đèn</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="text-center">
-                        <img src="https://q8laservietnam.vn/wp-content/uploads/2022/08/mau-bien-quang-cao-in-bat-13.jpg" class="img-fluid rounded fixed-image" alt="">
-                        <div class="py-4">
-                            <a href="#" class="h5">Biển bạt</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Service Start-->
+   <div class="container-fluid">
+    <div class="container py-5">
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="fw-bold">Dịch Vụ</h1>
+            <a href="#" class="btn btn-light px-4 py-2 rounded-pill shadow-sm fw-semibold hover-pill">
+                Xem thêm
+            </a>
         </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="service-card text-center p-3">
+                    <a href="#">
+                        <img src="https://bienhieudep.vn/wp-content/uploads/2019/08/bien-mat-dung-alu-chu-nhom.jpg"
+                             class="service-img rounded" alt="">
+                    </a>
+                    <div class="py-3">
+                        <a href="#" class="service-title">Biển alu</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="service-card text-center p-3">
+                    <img src="https://ledcolour.com/wp-content/uploads/2013/08/945321_463415263749947_417188877_n.jpg"
+                         class="service-img rounded" alt="">
+                    <div class="py-3">
+                        <a href="#" class="service-title">Biển led</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="service-card text-center p-3">
+                    <img src="https://thietkeinanbanghieu.com/wp-content/uploads/2024/04/bien-quang-cao-hop-den-bat-hiflex-2.jpg"
+                         class="service-img rounded" alt="">
+                    <div class="py-3">
+                        <a href="#" class="service-title">Biển hộp đèn</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="service-card text-center p-3">
+                    <img src="https://q8laservietnam.vn/wp-content/uploads/2022/08/mau-bien-quang-cao-in-bat-13.jpg"
+                         class="service-img rounded" alt="">
+                    <div class="py-3">
+                        <a href="#" class="service-title">Biển bạt</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
-    <!-- Fruits Shop End-->
+</div>
+
+    <!--Service End-->
 
 
     <!-- Featurs Start -->
@@ -227,67 +234,57 @@
 
 
     <!-- Product Start -->
-    <div class="container-fluid py-5">
+    <div class="container-fluid">
         <div class="container py-5">
             <div class="text-center mx-auto mb-5" style="max-width: 700px;">
                 <h1 class="display-4">Sản phẩm</h1>
-                <p>Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks
-                    reasonable.</p>
+                <p>Khám phá các bộ sưu tập nội thất phong phú, từ cổ điển đến hiện đại, được chọn lọc kỹ lưỡng để mang đến
+                    không gian sống hoàn hảo cho bạn.</p>
             </div>
-            <div class="row g-4 justify-content-center">
+            <div class="row g-4 justify-content-center category-list">
 
-                <div class="col-12 col-md-6 col-lg-4 d-flex">
-                    <div class="p-4 rounded bg-light mx-auto" style="max-width: 350px; width: 100%;">
-                        <div class="row align-items-center">
-                            <div class="col-6">
-                                <a href="#"><img src="https://sofahoangduc.com/wp-content/uploads/2022/03/ban-tra-ban-sofa-dep-hien-dai-04.2.jpg" class="img-fluid rounded-circle w-100" alt=""></a>
-                            </div>
-                            <div class="col-6">
-                                <a href="#" class="h5">Bàn</a>
-                            </div>
+                <!-- ITEM -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="#" class="category-item text-center d-block p-3">
+                        <div class="category-img">
+                            <img src="https://sofahoangduc.com/wp-content/uploads/2022/03/ban-tra-ban-sofa-dep-hien-dai-04.2.jpg"
+                                alt="">
                         </div>
-                    </div>
+                        <h5 class="mt-3">Bàn</h5>
+                    </a>
                 </div>
 
-                <div class="col-12 col-md-6 col-lg-4 d-flex">
-                    <div class="p-4 rounded bg-light mx-auto" style="max-width: 350px; width: 100%;">
-                        <div class="row align-items-center">
-                            <div class="col-6">
-                                <img src="https://file.hstatic.net/200000666677/file/ghe-ban-an-gt245-1-01_10a968c11d264b5c8378d87a6193bda9_1024x1024.jpg" class="img-fluid rounded-circle w-100" alt="">
-                            </div>
-                            <div class="col-6">
-                                <a href="#" class="h5">Ghế</a>
-                            </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="#" class="category-item text-center d-block p-3">
+                        <div class="category-img">
+                            <img src="https://file.hstatic.net/200000666677/file/ghe-ban-an-gt245-1-01_10a968c11d264b5c8378d87a6193bda9_1024x1024.jpg"
+                                alt="">
                         </div>
-                    </div>
+                        <h5 class="mt-3">Ghế</h5>
+                    </a>
                 </div>
 
-                <div class="col-12 col-md-6 col-lg-4 d-flex">
-                    <div class="p-4 rounded bg-light mx-auto" style="max-width: 350px; width: 100%;">
-                        <div class="row align-items-center">
-                            <div class="col-6">
-                                <img src="https://noithathpro.com/uploads/giuong-hien-dai-3.jpg" class="img-fluid rounded-circle w-100" alt="">
-                            </div>
-                            <div class="col-6">
-                                <a href="#" class="h5">Giường</a>
-                            </div>
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="#" class="category-item text-center d-block p-3">
+                        <div class="category-img">
+                            <img src="https://noithathpro.com/uploads/giuong-hien-dai-3.jpg" alt="">
                         </div>
-                    </div>
+                        <h5 class="mt-3">Giường</h5>
+                    </a>
                 </div>
-                <div class="col-12 col-md-6 col-lg-4 d-flex">
-                    <div class="p-4 rounded bg-light mx-auto" style="max-width: 350px; width: 100%;">
-                        <div class="row align-items-center">
-                            <div class="col-6">
-                                <img src="https://netdecor.com.vn/wp-content/uploads/2021/12/import-placeholder-for-1377.jpg" class="img-fluid rounded-circle w-100" alt="">
-                            </div>
-                            <div class="col-6">
-                                <a href="#" class="h5">Tủ</a>
-                            </div>
+
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="#" class="category-item text-center d-block p-3">
+                        <div class="category-img">
+                            <img src="https://netdecor.com.vn/wp-content/uploads/2021/12/import-placeholder-for-1377.jpg"
+                                alt="">
                         </div>
-                    </div>
+                        <h5 class="mt-3">Tủ</h5>
+                    </a>
                 </div>
 
             </div>
+
 
         </div>
     </div>
@@ -302,15 +299,15 @@
                     <div class="py-4">
                         <h1 class="display-3 text-white">TRUNG KIÊN</h1>
                         <p class="fw-normal display-3 text-white mb-4">UY TÍN - CHẤT LƯỢNG</p>
-                        <p class="mb-4 text-white">The generated Lorem Ipsum is therefore always free from repetition
-                            injected humour, or non-characteristic words etc.</p>
+                        <p class="mb-4 text-white">Khám phá bộ sưu tập nội thất đa dạng, được thiết kế tinh xảo và sản xuất từ những vật liệu tốt nhất, đáp ứng mọi nhu cầu không gian sống của bạn.</p>
                         <a href="#"
                             class="banner-btn btn border-2 border-white rounded-pill text-white py-3 px-5">BUY</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="position-relative">
-                        <img src="https://rubicmarketing.com/wp-content/uploads/2021/09/thiet-ke-banner-quang-cao-noi-that-2.jpg" class="img-fluid w-100 rounded" alt="">
+                        <img src="https://rubicmarketing.com/wp-content/uploads/2021/09/thiet-ke-banner-quang-cao-noi-that-2.jpg"
+                            class="img-fluid w-100 rounded" alt="">
                         {{-- <div class="d-flex align-items-center justify-content-center bg-white rounded-circle position-absolute"
                             style="width: 140px; height: 140px; top: 0; left: 0;">
                             <h1 style="font-size: 100px;">1</h1>
@@ -333,9 +330,10 @@
             <div class="owl-carousel vegetable-carousel justify-content-center">
                 <div class="vesitable-item border border-primary rounded position-relative vesitable-item">
                     <a href="#">
-                    <div class="vesitable-img">
-                        <img src="https://netdecor.com.vn/wp-content/uploads/2021/12/import-placeholder-for-1377.jpg" class="img-fluid w-100 rounded-top" alt="">
-                    </div>
+                        <div class="vesitable-img">
+                            <img src="https://netdecor.com.vn/wp-content/uploads/2021/12/import-placeholder-for-1377.jpg"
+                                class="img-fluid w-100 rounded-top" alt="">
+                        </div>
                     </a>
                     <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
                         style="top: 10px; right: 10px;">Vegetable</div>
@@ -351,12 +349,13 @@
                 </div>
                 <div class="vesitable-item border border-primary rounded position-relative vesitable-item">
                     <div class="vesitable-img">
-                        <img src="https://noithathpro.com/uploads/giuong-hien-dai-3.jpg" class="img-fluid w-100 rounded-top" alt="">
+                        <img src="https://noithathpro.com/uploads/giuong-hien-dai-3.jpg"
+                            class="img-fluid w-100 rounded-top" alt="">
                     </div>
                     <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
                         style="top: 10px; right: 10px;">Vegetable</div>
                     <div class="p-4 rounded-bottom">
-                       <h4><a href="#"> Parsely </a></h4>
+                        <h4><a href="#"> Parsely </a></h4>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                         <div class="d-flex justify-content-between flex-lg-wrap">
                             <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
@@ -383,7 +382,8 @@
                 </div>
                 <div class="vesitable-item border border-primary rounded position-relative vesitable-item">
                     <div class="vesitable-img">
-                        <img src="https://file.hstatic.net/200000666677/file/ghe-ban-an-gt245-1-01_10a968c11d264b5c8378d87a6193bda9_1024x1024.jpg" class="img-fluid w-100 rounded-top" alt="">
+                        <img src="https://file.hstatic.net/200000666677/file/ghe-ban-an-gt245-1-01_10a968c11d264b5c8378d87a6193bda9_1024x1024.jpg"
+                            class="img-fluid w-100 rounded-top" alt="">
                     </div>
                     <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
                         style="top: 10px; right: 10px;">Vegetable</div>
@@ -399,7 +399,8 @@
                 </div>
                 <div class="vesitable-item border border-primary rounded position-relative vesitable-item">
                     <div class="vesitable-img">
-                        <img src="https://file.hstatic.net/200000666677/file/ghe-ban-an-gt245-1-01_10a968c11d264b5c8378d87a6193bda9_1024x1024.jpg" class="img-fluid w-100 rounded-top" alt="">
+                        <img src="https://file.hstatic.net/200000666677/file/ghe-ban-an-gt245-1-01_10a968c11d264b5c8378d87a6193bda9_1024x1024.jpg"
+                            class="img-fluid w-100 rounded-top" alt="">
                     </div>
                     <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
                         style="top: 10px; right: 10px;">Vegetable</div>
@@ -431,12 +432,13 @@
                 </div>
                 <div class="vesitable-item border border-primary rounded position-relative vesitable-item">
                     <div class="vesitable-img">
-                        <img src="https://file.hstatic.net/200000666677/file/ghe-ban-an-gt245-1-01_10a968c11d264b5c8378d87a6193bda9_1024x1024.jpg" class="img-fluid w-100 rounded-top" alt="">
+                        <img src="https://file.hstatic.net/200000666677/file/ghe-ban-an-gt245-1-01_10a968c11d264b5c8378d87a6193bda9_1024x1024.jpg"
+                            class="img-fluid w-100 rounded-top" alt="">
                     </div>
                     <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
                         style="top: 10px; right: 10px;">Vegetable</div>
                     <div class="p-4 rounded-bottom">
-                       <h4><a href="#"> Parsely </a></h4>
+                        <h4><a href="#"> Parsely </a></h4>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
                         <div class="d-flex justify-content-between flex-lg-wrap">
                             <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
@@ -447,7 +449,8 @@
                 </div>
                 <div class="vesitable-item border border-primary rounded position-relative vesitable-item">
                     <div class="vesitable-img">
-                        <img src="https://file.hstatic.net/200000666677/file/ghe-ban-an-gt245-1-01_10a968c11d264b5c8378d87a6193bda9_1024x1024.jpg" class="img-fluid w-100 rounded-top" alt="">
+                        <img src="https://file.hstatic.net/200000666677/file/ghe-ban-an-gt245-1-01_10a968c11d264b5c8378d87a6193bda9_1024x1024.jpg"
+                            class="img-fluid w-100 rounded-top" alt="">
                     </div>
                     <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
                         style="top: 10px; right: 10px;">Vegetable</div>

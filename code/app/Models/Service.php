@@ -16,4 +16,9 @@ class Service extends Model
         'image_url',
         'slug',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

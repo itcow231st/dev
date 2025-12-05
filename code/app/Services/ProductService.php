@@ -25,6 +25,11 @@ class ProductService
         return $this->model->find($id);
     }
 
+    public function getProductBySlug($slug)
+    {
+        return $this->model->find($slug);
+    }
+
     public function createProduct(array $data)
     {
         return DB::transaction(function () use ($data) {

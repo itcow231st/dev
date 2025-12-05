@@ -25,6 +25,11 @@ class ServiceService
         return $this->model->find($id);
     }
 
+    public function getServiceBySlug($slug)
+    {
+        return $this->model->find($slug);
+    }
+
     public function createService($data)
     {
         return DB::transaction(function () use ($data) {

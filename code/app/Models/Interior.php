@@ -22,4 +22,8 @@ class Interior extends Model
     {
         return $this->hasMany(Products::class, 'interior_id');
     }
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

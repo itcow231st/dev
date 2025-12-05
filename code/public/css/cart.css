@@ -1,0 +1,125 @@
+.cart-wrapper .cart-dropdown {
+    position: absolute;
+    right: 0;
+    margin-top: 8px;
+    width: 340px;
+    background: white;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: all .18s ease-in-out;
+    z-index: 99;
+}
+
+.cart-wrapper:hover .cart-dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.cart-header {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 160px;
+    overflow-y: auto;
+}
+
+.cart-items li {
+    font-size: 14px;
+    padding: 6px 0;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.cart-footer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart-wrapper {
+    position: relative;
+}
+
+.cart-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 40px;
+    /* tùy chỉnh theo khoảng cách icon -> dropdown */
+    right: 0;
+    width: 260px;
+    /* bằng đúng width dropdown */
+    height: 20px;
+    /* cầu nối */
+    background: transparent;
+    pointer-events: auto;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f3f3f3;
+}
+
+.cart-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 12px;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.item-name {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.item-qty-price {
+    font-size: 14px;
+    color: #666;
+}
+
+.item-total {
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.view-cart-btn {
+    display: block;
+    text-align: center;
+    padding: 8px 12px;
+    font-size: 14px;
+    margin-top: 10px;
+
+    background: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+
+    border-radius: 6px;
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.view-cart-btn:hover {
+    background: rgb(71, 178, 240);
+    color: #ffffff;
+    border-color: #007bff;
+}

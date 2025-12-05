@@ -23,6 +23,9 @@ Route::name('home.')->group(function () {
     Route::get('/login',[HomeController::class, 'login'])->name('login');
     Route::get('/register',[HomeController::class, 'register'])->name('register');
     Route::get('/profile',[HomeController::class, 'profile'])->name('profile');
+    Route::get('/interior/{slug}',[HomeController::class,'interior'])->name('interior.show');
+    Route::get('/service/{slug}',[HomeController::class,'serviceItem'])->name('service.show');
+    Route::get('/service/',[HomeController::class,'service'])->name('service');
 });
 
 Route::name('admin.')->prefix('admin')->group(function () {

@@ -25,6 +25,11 @@ class InteriorService
         return $this->model->find($id);
     }
 
+    public function getInteriorBySlug($slug)
+    {
+        return $this->model->find($slug);
+    }
+
     public function createInterior(array $data)
     {
         return DB::transaction(function () use ($data) {
