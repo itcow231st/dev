@@ -121,69 +121,6 @@
         </div> --}}
     <!-- Featurs Section End -->
 
-
-    <!-- Service Start-->
-   <div class="container-fluid">
-    <div class="container py-5">
-
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="fw-bold">Dịch Vụ</h1>
-            <a href="#" class="btn btn-light px-4 py-2 rounded-pill shadow-sm fw-semibold hover-pill">
-                Xem thêm
-            </a>
-        </div>
-
-        <div class="row g-4">
-            <div class="col-md-6 col-lg-6 col-xl-3">
-                <div class="service-card text-center p-3">
-                    <a href="#">
-                        <img src="https://bienhieudep.vn/wp-content/uploads/2019/08/bien-mat-dung-alu-chu-nhom.jpg"
-                             class="service-img rounded" alt="">
-                    </a>
-                    <div class="py-3">
-                        <a href="#" class="service-title">Biển alu</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-6 col-xl-3">
-                <div class="service-card text-center p-3">
-                    <img src="https://ledcolour.com/wp-content/uploads/2013/08/945321_463415263749947_417188877_n.jpg"
-                         class="service-img rounded" alt="">
-                    <div class="py-3">
-                        <a href="#" class="service-title">Biển led</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-6 col-xl-3">
-                <div class="service-card text-center p-3">
-                    <img src="https://thietkeinanbanghieu.com/wp-content/uploads/2024/04/bien-quang-cao-hop-den-bat-hiflex-2.jpg"
-                         class="service-img rounded" alt="">
-                    <div class="py-3">
-                        <a href="#" class="service-title">Biển hộp đèn</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-6 col-xl-3">
-                <div class="service-card text-center p-3">
-                    <img src="https://q8laservietnam.vn/wp-content/uploads/2022/08/mau-bien-quang-cao-in-bat-13.jpg"
-                         class="service-img rounded" alt="">
-                    <div class="py-3">
-                        <a href="#" class="service-title">Biển bạt</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
-    <!--Service End-->
-
-
     <!-- Featurs Start -->
     {{-- <div class="container-fluid service py-5">
             <div class="container py-5">
@@ -290,6 +227,66 @@
     </div>
     <!-- Product End -->
 
+    <!-- Service Start-->
+    <div class="container-fluid">
+        <div class="container py-5">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="fw-bold">Dịch Vụ</h1>
+                <a href="#" class="btn btn-light px-4 py-2 rounded-pill shadow-sm fw-semibold hover-pill">
+                    Xem thêm
+                </a>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="service-card text-center p-3">
+                        <a href="#">
+                            <img src="https://bienhieudep.vn/wp-content/uploads/2019/08/bien-mat-dung-alu-chu-nhom.jpg"
+                                class="service-img rounded" alt="">
+                        </a>
+                        <div class="py-3">
+                            <a href="#" class="service-title">Biển alu</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="service-card text-center p-3">
+                        <img src="https://ledcolour.com/wp-content/uploads/2013/08/945321_463415263749947_417188877_n.jpg"
+                            class="service-img rounded" alt="">
+                        <div class="py-3">
+                            <a href="#" class="service-title">Biển led</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="service-card text-center p-3">
+                        <img src="https://thietkeinanbanghieu.com/wp-content/uploads/2024/04/bien-quang-cao-hop-den-bat-hiflex-2.jpg"
+                            class="service-img rounded" alt="">
+                        <div class="py-3">
+                            <a href="#" class="service-title">Biển hộp đèn</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-6 col-xl-3">
+                    <div class="service-card text-center p-3">
+                        <img src="https://q8laservietnam.vn/wp-content/uploads/2022/08/mau-bien-quang-cao-in-bat-13.jpg"
+                            class="service-img rounded" alt="">
+                        <div class="py-3">
+                            <a href="#" class="service-title">Biển bạt</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--Service End-->
+
 
     <!-- Banner Section Start-->
     <div class="container-fluid banner bg-primary my-5">
@@ -299,7 +296,8 @@
                     <div class="py-4">
                         <h1 class="display-3 text-white">TRUNG KIÊN</h1>
                         <p class="fw-normal display-3 text-white mb-4">UY TÍN - CHẤT LƯỢNG</p>
-                        <p class="mb-4 text-white">Khám phá bộ sưu tập nội thất đa dạng, được thiết kế tinh xảo và sản xuất từ những vật liệu tốt nhất, đáp ứng mọi nhu cầu không gian sống của bạn.</p>
+                        <p class="mb-4 text-white">Khám phá bộ sưu tập nội thất đa dạng, được thiết kế tinh xảo và sản xuất
+                            từ những vật liệu tốt nhất, đáp ứng mọi nhu cầu không gian sống của bạn.</p>
                         <a href="#"
                             class="banner-btn btn border-2 border-white rounded-pill text-white py-3 px-5">BUY</a>
                     </div>
@@ -328,142 +326,27 @@
         <div class="container py-5">
             <h1 class="mb-0">Best Seller</h1>
             <div class="owl-carousel vegetable-carousel justify-content-center">
+                @foreach ($products as $product) 
                 <div class="vesitable-item border border-primary rounded position-relative vesitable-item">
-                    <a href="#">
+                    <a href="{{ route('home.product.detail', ['slug' => $product->slug]) }}">
                         <div class="vesitable-img">
-                            <img src="https://netdecor.com.vn/wp-content/uploads/2021/12/import-placeholder-for-1377.jpg"
+                            <img src="{{ config('url.product') . '/' . $product->image_url }}"
                                 class="img-fluid w-100 rounded-top" alt="">
                         </div>
                     </a>
                     <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Vegetable</div>
+                        style="top: 10px; right: 10px;">{{ $product->interior->name }}</div>
                     <div class="p-4 rounded-bottom">
-                        <h4><a href="#"> img </a></h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                        <h4><a href="{{ route('home.product.detail', ['slug' => $product->slug]) }}"> {{$product->name}} </a></h4>
+                        <p>{{ $product->description }}</p>
                         <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
+                            <p class="text-dark fs-5 fw-bold mb-0">{{ $product->price }}</p>
+                            <btn class="btn border border-secondary rounded-pill px-3 text-primary add-to-cart" data-product-id="{{ $product->id }}" data-qty="1" data-url= "{{ route('home.cart.add') }}">
+                                <i class="fa fa-shopping-bag me-2 text-primary "></i> Add to cart</btn>
                         </div>
                     </div>
                 </div>
-                <div class="vesitable-item border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="https://noithathpro.com/uploads/giuong-hien-dai-3.jpg"
-                            class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4><a href="#"> Parsely </a></h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$4.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="vesitable-item border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="img/vegetable-item-3.png" class="img-fluid w-100 rounded-top bg-light" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4><a href="#"> Parsely </a></h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="vesitable-item border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="https://file.hstatic.net/200000666677/file/ghe-ban-an-gt245-1-01_10a968c11d264b5c8378d87a6193bda9_1024x1024.jpg"
-                            class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4><a href="#"> Parsely </a></h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="vesitable-item border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="https://file.hstatic.net/200000666677/file/ghe-ban-an-gt245-1-01_10a968c11d264b5c8378d87a6193bda9_1024x1024.jpg"
-                            class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4><a href="#"> Parsely </a></h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="vesitable-item border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="img/vegetable-item-6.jpg" class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4><a href="#"> Parsely </a></h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="vesitable-item border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="https://file.hstatic.net/200000666677/file/ghe-ban-an-gt245-1-01_10a968c11d264b5c8378d87a6193bda9_1024x1024.jpg"
-                            class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4><a href="#"> Parsely </a></h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="vesitable-item border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img">
-                        <img src="https://file.hstatic.net/200000666677/file/ghe-ban-an-gt245-1-01_10a968c11d264b5c8378d87a6193bda9_1024x1024.jpg"
-                            class="img-fluid w-100 rounded-top" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">Vegetable</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4><a href="#"> Parsely </a></h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">$7.99 / kg</p>
-                            <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i
-                                    class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

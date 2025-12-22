@@ -6,7 +6,12 @@
         <div class="mb-3">
             <input type="hidden" name="id" value="{{ $service->id }}">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" required value="{{ $service->name }}">
+            <input type="text" class="form-control" id="name" name="name" value="{{ $service->name }}">
+             @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <p class="alert alert-danger mt-2">{{ $error }} </p>
+                @endforeach
+            @endif
         </div>
          <div class="mb-3">
                 <label for="image_url" class="form-label">Image URL</label>

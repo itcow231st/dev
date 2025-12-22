@@ -13,8 +13,10 @@
 <div class="w-100 header py-4" style="background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.06);">
     <div class="container d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center gap-2">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Shopee_logo.svg" height="34" alt="logo"/>
-            <span class="fw-bold fs-5">Đăng ký</span>
+           
+            <a href="{{route('home.index')}}"  class="text-decoration-none">
+                 <h1 class="text-primary fw-bold display-6">TRUNG KIÊN</h1>
+            </a>
         </div>
         <a href="#" class="text-primary">Bạn cần giúp đỡ?</a>
     </div>
@@ -23,21 +25,45 @@
 <div class="container-fluid bg-main d-flex align-items-center justify-content-center" style="min-height:60vh;">
     <div class="row w-100 justify-content-center align-items-center">
         <div class="col-lg-6 text-center text-white d-none d-lg-flex flex-column align-items-center justify-content-center">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1f/Shopee_logo.svg" height="160" class="mb-4" alt="logo"/>
-            <h2 class="fw-bold">MyShop</h2>
+             <h1 class="text-light display-2 display-lg-1 fw-bold">TRUNG KIÊN</h1>
             <p class="fs-5">Tạo tài khoản để bắt đầu mua sắm</p>
         </div>
         <div class="col-lg-4 d-flex justify-content-center">
             <div class="card card-register p-4 shadow-sm">
                 <h4 class="fw-bold mb-3 text-center">Đăng ký</h4>
-                <form action="#" method="post">
-                    <div class="mb-3"><label class="form-label">Họ và tên</label><input class="form-control" name="name" placeholder="Họ và tên" required></div>
-                    <div class="mb-3"><label class="form-label">Email</label><input class="form-control" name="email" type="email" placeholder="Email" required></div>
-                    <div class="mb-3"><label class="form-label">Mật khẩu</label><input class="form-control" name="password" type="password" placeholder="Mật khẩu" required></div>
-                    <div class="mb-3"><label class="form-label">Xác nhận mật khẩu</label><input class="form-control" name="password_confirmation" type="password" placeholder="Xác nhận mật khẩu" required></div>
+                <form action="{{ route('home.registerProcess') }}" method="post">
+                    @csrf
+                    <div class="mb-3">
+                        <label class="form-label">Họ và tên</label>
+                        <input class="form-control" name="full_name" placeholder="Họ và tên" value="{{old('full_name')}}">
+                        @error('full_name')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input class="form-control" name="email" type="email" placeholder="Email" value="{{old('email')}}">
+                        @error('email')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Mật khẩu</label>
+                        <input class="form-control" name="password" type="password" placeholder="Mật khẩu" >
+                        @error('password')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Xác nhận mật khẩu</label>
+                        <input class="form-control" name="password_confirmation" type="password" placeholder="Xác nhận mật khẩu" >
+                        @error('password_confirmation')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
                     <button class="btn btn-primary w-100 py-2" type="submit">Đăng ký</button>
                 </form>
-                <div class="text-center mt-3">Đã có tài khoản? <a href="login.html">Đăng nhập</a></div>
+                <div class="text-center mt-3">Đã có tài khoản? <a href="{{route('home.login')}}">Đăng nhập</a></div>
             </div>
         </div>
     </div>

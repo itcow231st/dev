@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Interior;
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 class InteriorService
@@ -32,31 +33,47 @@ class InteriorService
 
     public function createInterior(array $data)
     {
-        return DB::transaction(function () use ($data) {
-            return $this->model->create($data);
-        });
+        DB::beginTransaction();
+        try{
+            $interios = $this->model->create($data);
+            DB::commit();
+            return $interios;
+        }catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 
     public function updateInterior($id, array $data)
     {
-        return DB::transaction(function () use ($id, $data) {
+        DB::beginTransaction();
+        try{
             $interior = $this->model->findOrFail($id);
             if($interior){
                 $interior->update($data);
                 $this->uploadService->delete($data['image_url_old']);
             }
+            DB::commit();
             return $interior;
-        });
+        }catch(Exception $e){
+            DB::rollBack();
+            throw $e;
+        }
     }
     public function deleteInterior($id)
     {
-        return DB::transaction(function () use ($id) {
-            $interior = $this->model->findOrFail($id);
+        DB::beginTransaction();
+        try{
+              $interior = $this->model->findOrFail($id);
             if($interior){
                 $this->uploadService->delete($interior->image_url);
                 $interior->delete();
             }
+            DB::commit();
             return $interior;
-        });
+        }catch(Exception $e){
+            DB::rollBack();
+            throw $e;
+        }
     }
 }

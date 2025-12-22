@@ -30,6 +30,12 @@ class ProductService
         return $this->model->find($slug);
     }
 
+    public function getProductBetsSellers()
+    {
+        $products = $this->model->with('interior')->limit(8)->get();
+        return $products;
+    }
+    
     public function createProduct(array $data)
     {
         return DB::transaction(function () use ($data) {

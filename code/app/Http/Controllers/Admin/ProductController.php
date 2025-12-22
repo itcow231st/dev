@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Services\InteriorService;
 use App\Services\ProductService;
 use App\Services\UploadFileService;
@@ -32,7 +33,7 @@ class ProductController extends Controller
         return view('admin.product.create')->with('interiors', $interiors);
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         try{
             $data = $request->all();
@@ -54,7 +55,7 @@ class ProductController extends Controller
         return view('admin.product.edit')->with(['product' => $product, 'interiors' => $interiors]);
     }
 
-    public function update(Request $request)
+    public function update(ProductRequest $request)
     {
         try{
             $data = $request->all();

@@ -7,6 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -194,6 +195,27 @@
     background: #e9ecef;
     transform: translateY(-2px);
 }
+.user-fb {
+    padding: 6px 10px;
+    border-radius: 20px;
+    transition: background 0.2s;
+}
+
+.user-fb:hover {
+    background: #f0f2f5;
+}
+.remove-cart-item {
+    background: none;
+    border: none;
+    color: #dc3545;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+.remove-cart-item:hover {
+    color: #a71d2a;
+}
 
     </style>
     @yield('css')
@@ -256,6 +278,7 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/cart.js') }}"></script>
     @yield('js')
     <script>
         document.addEventListener("DOMContentLoaded", function() {

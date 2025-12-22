@@ -2,27 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AuthRequest;
+use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\RegisterRequest;
+use App\Services\AccountService;
 use App\Services\InteriorService;
 use App\Services\ProductService;
+use App\Services\ProfileService;
 use App\Services\ServiceService;
-use Illuminate\Http\Request;
+
 
 class HomeController extends Controller
 {
     protected $serviceService;
     protected $interiorService;
     protected $productService;
+    protected $accountService;
+    protected $profileService;
     public function __construct()
     {   
         $this->serviceService = new ServiceService();
         $this->interiorService = new InteriorService();
         $this->productService = new ProductService();
+        $this->accountService = new AccountService();
+        $this->profileService = new ProfileService();
         
     }
 
     public function index()
     {
-        return view('home.index');
+        $products = $this->productService->getProductBetsSellers();
+        return view('home.index', compact('products'));
     }
 
     public function contact()
@@ -55,14 +65,54 @@ class HomeController extends Controller
         return view('home.login');
     }
 
+    public function processLogin(AuthRequest $request)
+    {
+        $data = $request->only('email','password');
+        if( auth()->guard('web')->attempt($data))
+        {
+            return redirect()->route('home.index');
+        }else
+        {
+            return redirect()->back()->with('error', 'Sai thông tin đăng nhập!');
+        }
+       
+    }
+
     public function register()
     {
         return view('home.register');
     }
 
+    public function registerProcess(RegisterRequest $request)
+    {
+        
+        try {
+           $this->accountService->setData($request->all())->createAccount();
+           return redirect()->route('home.login')->with('success', 'Account created successfully.');
+       } catch (\Exception $e) {
+           return redirect()->back()->with('error', 'Failed to create account: ');
+       }
+    }
+
+    public function logout()
+    {
+        auth()->guard('web')->logout();
+        return redirect()->route('home.index');
+    }
+
     public function profile()
     {
         return view('home.profile');
+    }
+
+    public function updateProfile(ProfileRequest $request)
+    {
+        try {
+            $this->profileService->updateProfile($request->all());
+            return redirect()->back()->with('success', 'Profile updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to update profile: ');
+        }
     }
 
     public function interior($slug)
@@ -73,9 +123,8 @@ class HomeController extends Controller
     }
     public function service()
     {
-        $services = $this->serviceService->getAllServices();
       
-        return redirect()->route('home.products')->with('products',$services);
+        return view('home.service');
     }
     public function serviceItem($slug)
     {

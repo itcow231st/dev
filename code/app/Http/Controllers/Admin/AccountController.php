@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AccountRequest;
 use App\Services\AccountService;
 use App\Services\RoleService;
 use Illuminate\Http\Request;
@@ -29,7 +30,7 @@ class AccountController extends Controller
         return view('admin.account.create')->with('roles', $roles);
     }
 
-    public function store(Request $request)
+    public function store(AccountRequest $request)
     {
        try {
            $this->accountService->setData($request->all())->createAccount();
@@ -50,7 +51,7 @@ class AccountController extends Controller
             ]);
     }
 
-    public function update(Request $request)
+    public function update(AccountRequest $request)
     {
         try {
             $this->accountService->setData($request->all())->updateAccount($request->id);

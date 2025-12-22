@@ -5,12 +5,17 @@
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" required>
+            <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}">
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <p class="alert alert-danger mt-2">{{ $error }} </p>
+                @endforeach
+            @endif
         </div>
-         <div class="mb-3">
-                <label for="image_url" class="form-label">Image URL</label>
-                <input type="file" class="form-control" id="image_url" name="image_url" >
-            </div>  
+        <div class="mb-3">
+            <label for="image_url" class="form-label">Image URL</label>
+            <input type="file" class="form-control" id="image_url" name="image_url">
+        </div>
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RoleRequest;
 use App\Services\RoleService;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class RoleController extends Controller
         return view('admin.role.create');
     }
 
-    public function store(Request $request)
+    public function store(RoleRequest $request)
     {
         try{
           $this->roleService->createRole($request->all());  
@@ -40,7 +41,7 @@ class RoleController extends Controller
         return view('admin.role.edit')->with('role', $role);
     }
 
-    public function update(Request $request)
+    public function update(RoleRequest $request)
     {
         try{
           $this->roleService->updateRole($request->all());  

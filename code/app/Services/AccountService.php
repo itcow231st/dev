@@ -49,7 +49,13 @@ class AccountService
     {
         DB::beginTransaction();
         try {
-             $account = $this->model->create($this->split['account'] + ['password' => bcrypt($this->defaultPassword())]);
+            if (!isset($this->split['account']['password'])) {
+                $this->split['account']['password'] = bcrypt($this->defaultPassword());
+            } else {
+                $this->split['account']['password'] = bcrypt($this->split['account']['password']);
+                $this->split['account']['role_id'] = 2;
+            }
+            $account = $this->model->create($this->split['account']);
             $account->profile()->create($this->split['profile']);
             DB::commit();
             return $account;
@@ -78,4 +84,5 @@ class AccountService
             throw $e;
         }
     }
+
 }

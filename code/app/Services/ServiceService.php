@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Service;
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 class ServiceService
@@ -32,33 +33,54 @@ class ServiceService
 
     public function createService($data)
     {
-        return DB::transaction(function () use ($data) {
-            return $this->model->create($data);
-           
-        });
+        DB::beginTransaction();
+        try {
+            $service =  $this->model->create($data);
+            DB::commit();
+            return $service;
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 
     public function updateService($data)
     {
-        return DB::transaction(function () use ($data) {
+        DB::beginTransaction();
+        try {
             $service = $this->model->find($data['id']);
             if ($service) {
                 $service->update($data);
-                $this->uploadService->delete($data['image_url_old']);
+                if(isset($data['image_url_old'])){
+                    $this->uploadService->delete($data['image_url_old']);
+                }
             }
+            DB::commit();
             return $service;
-        });
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 
     public function destroyService($id)
     {
-        return DB::transaction(function () use ($id) {
-            $service = $this->model->find($id);
+       DB::beginTransaction();
+        try {
+           $service = $this->model->find($id);
             if ($service) {
-                $this->uploadService->delete($service->image_url);
+                if(isset($service->image_url)){
+                    $this->uploadService->delete($service->image_url);
+                }
                 $service->delete();
             }
+            DB::commit();
             return $service;
-        });
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+            
+    
     }
 }

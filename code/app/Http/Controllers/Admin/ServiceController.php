@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ServiceRequest;
 use App\Services\ServiceService;
 use App\Services\UploadFileService;
 use Illuminate\Http\Request;
@@ -27,11 +28,11 @@ class ServiceController extends Controller
         return view('admin.service.create');
     }
 
-    public function store(Request $request)
+    public function store(ServiceRequest $request)
     {
        try {
          $data = $request->all();
-            if($data['image_url']){
+            if(isset($data['image_url'])){
                 $image = $this->uploadService->upload($request->file('image_url'), 'services');
                 $data['image_url'] = $image;
             }
@@ -48,7 +49,7 @@ class ServiceController extends Controller
         return view('admin.service.edit')->with('service', $service);
     }
 
-    public function update(Request $request)
+    public function update(ServiceRequest $request)
     {
         try {
              $data = $request->all();
@@ -56,7 +57,7 @@ class ServiceController extends Controller
                 $image = $this->uploadService->upload($request->file('image_url'), 'services');
                 $data['image_url'] = $image;
             }else{
-                $data['image_url'] = $data['image_url_old'];
+                $data['image_url'] = $data['image_url_old'] ?? null;
             }
             $this->serviceService->updateService($data);
             return redirect()->route('admin.service.index')->with('success', 'Service updated successfully.');

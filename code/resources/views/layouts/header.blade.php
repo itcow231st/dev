@@ -1,4 +1,7 @@
   <!-- Navbar start -->
+  @php
+      $cartTotal = collect(session('cart', []))->sum(fn($i) => $i['qty'] * $i['price']);
+  @endphp
   <div class="container-fluid fixed-top">
       <div class="container topbar bg-primary d-none d-lg-block">
           <div class="d-flex justify-content-between">
@@ -30,28 +33,28 @@
                       <a href="{{ route('home.index', [], false) }}" class="nav-item nav-link">Trang chủ</a>
                       <a href="{{ route('home.products', [], false) }}" class="nav-item nav-link ">Cửa hàng</a>
                       <div class="nav-item dropdown">
-                          <a href="{{route('home.products')}}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Nội thất</a>
+                          <a href="{{ route('home.products') }}" class="nav-link dropdown-toggle"
+                              data-bs-toggle="dropdown">Nội thất</a>
                           <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                            @foreach ($interiors as $interior)
-                                <a href="{{route('home.interior.show',$interior)}}" class="dropdown-item">{{$interior->name}}</a>
-                            @endforeach
+                              @foreach ($interiors as $interior)
+                                  <a href="{{ route('home.interior.show', $interior) }}"
+                                      class="dropdown-item">{{ $interior->name }}</a>
+                              @endforeach
                           </div>
                       </div>
                       <div class="nav-item dropdown">
-                          <a href="{{route('home.service')}}" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Dịch vụ</a>
+                          <a href="{{ route('home.service') }}" class="nav-link dropdown-toggle"
+                              data-bs-toggle="dropdown">Dịch vụ</a>
                           <div class="dropdown-menu m-0 bg-secondary rounded-0">
-                            @foreach ($services as $service)
-                                <a href="{{route('home.service.show',$service)}}" class="dropdown-item">{{$service->name}}</a>
-                            @endforeach
+                              @foreach ($services as $service)
+                                  <a href="{{ route('home.service.show', $service) }}"
+                                      class="dropdown-item">{{ $service->name }}</a>
+                              @endforeach
                           </div>
                       </div>
                       <a href="{{ route('home.contact', [], false) }}" class="nav-item nav-link">Giới thiệu</a>
                   </div>
                   <div class="d-flex m-3 me-0">
-                      {{-- <button class="btn-search btn border border-secondary btn-md-square rounded-circle bg-white me-4"
-                          data-bs-toggle="modal" data-bs-target="#searchModal"><i
-                              class="fas fa-search text-primary"></i>
-                        </button> --}}
                       <div class="search-wrapper position-relative pe-3">
                           <form id="searchForm" action="{{ route('home.products') }}" method="GET"
                               class="d-flex align-items-center">
@@ -74,46 +77,107 @@
 
                           </form>
                       </div>
-
+                      {{-- @dd(session('cart')) --}}
 
                       <div class="cart-wrapper" style="position: relative; display: inline-block;">
                           <div class="cart-icon me-4 my-auto" style="cursor:pointer; position:relative; padding:6px;">
                               <i class="fa fa-shopping-bag fa-2x text-primary"></i>
                               <span
-                                  class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-white px-1"style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{ $cartCount ?? 0 }}</span>
+                                  class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-white px-1 cart-count"style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{ count(session('cart', [])) ?? 0 }}</span>
                           </div>
                           <div class="cart-dropdown">
-                              <div class="cart-header">Giỏ hàng ({{ $cartCount ?? 0 }})</div>
+                              <div class="cart-header">Giỏ hàng ({{ count(session('cart', [])) ?? 0 }})</div>
                               <ul class="cart-items">
-                                  @forelse($cartItems ?? [] as $item)
-                                      <li class="cart-item">
-                                          <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}">
-
+                                  @forelse(session('cart', []) as $item)
+                                      <li class="cart-item" data-id="{{ $item['id'] }}">
+                                          <img src="{{ $item['image'] ? asset('storage/' . $item['image']) : asset('images/no-image.png') }}"
+                                              alt="{{ $item['name'] }}">
                                           <div class="item-info">
-                                              <div class="item-name">{{ $item->name }}</div>
+                                              <div class="item-name">{{ $item['name'] }}</div>
                                               <div class="item-qty-price">
-                                                  {{ $item->quantity }} × {{ number_format($item->price) }}đ
+                                                  {{ $item['qty'] }} × {{ number_format($item['price']) }}đ
                                               </div>
                                           </div>
 
                                           <div class="item-total">
-                                              {{ number_format($item->quantity * $item->price) }}đ
+                                              {{ number_format($item['qty'] * $item['price']) }}đ
                                           </div>
+                                          <button class="remove-cart-item" data-id="{{ $item['id'] }}"
+                                              title="Xóa sản phẩm">
+                                              ✕
+                                          </button>
                                       </li>
                                   @empty
                                       <li>Giỏ hàng trống</li>
                                   @endforelse
                               </ul>
                               <div class="cart-footer">
-                                  <strong>Tổng: {{ $total ?? 0 }}</strong>
+                                  <strong>Tổng:</strong>
+                                  <span class="cart-total" data-total="{{ $cartTotal }}">
+                                      {{ number_format($cartTotal) }}đ
+                                  </span>
                                   <a href="{{ route('home.cart') }}" class="view-cart-btn">Xem giỏ</a>
                               </div>
                           </div>
                       </div>
 
-                      <a href="{{ route('home.login', [], false) }}" class="my-auto">
+                      {{-- <a href="{{ route('home.login', [], false) }}" class="my-auto">
                           <i class="fas fa-user fa-2x"></i>
-                      </a>
+                      </a> --}}
+                      @auth('web')
+                          <div class="dropdown my-auto">
+                              <a href="#" class="d-flex align-items-center text-decoration-none"
+                                  data-bs-toggle="dropdown" aria-expanded="false">
+                                  <img src="{{ Auth::guard('web')->user()->profile->avatar ?? asset('storage/default-avatar.png') }}"
+                                      alt="avatar" class="rounded-circle" width="36" height="36">
+                              </a>
+
+                              <ul class="dropdown-menu dropdown-menu-start shadow mt-2" style="min-width: 220px;">
+
+                                  <!-- Tên user -->
+                                  <li>
+                                      <a class="dropdown-item fw-semibold text-dark" href="{{ route('home.profile') }}">
+                                          {{ Auth::guard('web')->user()->profile->full_name }}
+                                      </a>
+                                  </li>
+
+                                  <li>
+                                      <hr class="dropdown-divider">
+                                  </li>
+
+                                  <li>
+                                      <a class="dropdown-item d-flex align-items-center"
+                                          href="{{ route('home.profile') }}">
+                                          <i class="fas fa-user-circle me-2"></i> Hồ sơ cá nhân
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a class="dropdown-item d-flex align-items-center" href="#">
+                                          <i class="fas fa-key me-2"></i> Đổi mật khẩu
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a class="dropdown-item d-flex align-items-center" href="#">
+                                          <i class="fas fa-box me-2"></i> Đơn hàng của tôi
+                                      </a>
+                                  </li>
+
+                                  <li>
+                                      <form action="{{ route('home.logout') }}" method="POST">
+                                          @csrf
+                                          <button class="dropdown-item text-danger d-flex align-items-center">
+                                              <i class="fas fa-sign-out-alt me-2"></i> Đăng xuất
+                                          </button>
+                                      </form>
+                                  </li>
+                              </ul>
+                          </div>
+                      @else
+                          <a href="{{ route('home.login') }}" class="my-auto">
+                              <span class="text-white fw-semibold btn btn-primary">Đăng nhập</span>
+                          </a>
+                      @endauth
+
                   </div>
               </div>
           </nav>

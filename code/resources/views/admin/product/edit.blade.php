@@ -6,7 +6,8 @@
         <input type="hidden" name="id" value="{{$product->id}}">
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" required value="{{$product->name}}">
+            <input type="text" class="form-control" id="name" name="name" value="{{$product->name}}">
+            @error('name') <small class="text-danger">{{ $message }}</small> @enderror
         </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
@@ -14,7 +15,8 @@
             </div>
             <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
-                <input type="number" class="form-control" id="price" name="price" required value="{{$product->price}}">
+                <input type="number" class="form-control" id="price" name="price" value="{{$product->price}}">
+                @error('price') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
             <div class="mb-3">
                 <label for="image_url" class="form-label">Image URL</label>
@@ -23,7 +25,7 @@
             </div>  
             <div class="mb-3">
                 <label for="interior_id" class="form-label">Interior</label>
-                <select class="form-select" id="interior_id" name="interior_id" required>
+                <select class="form-select" id="interior_id" name="interior_id">
                     <option value="">Select Interior</option>
                     @foreach($interiors as $interior)
                         @if($interior->id == $product->interior_id)
@@ -33,6 +35,7 @@
                         @endif
                     @endforeach
                 </select>
+                @error('interior_id') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
