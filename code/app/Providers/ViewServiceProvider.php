@@ -20,12 +20,20 @@ class ViewServiceProvider extends ServiceProvider
     {
         $interiorService = app(\App\Services\InteriorService::class);
         $serviceService = app(\App\Services\ServiceService::class);
+        $cartService = app(\App\Services\CartService::class);
 
-        $interiors = $interiorService->getAllInteriors();
-        $services = $serviceService->getAllServices();
-        view()->composer('layouts.header', function ($view) use ($interiors, $services) {
-            $view->with('interiors',$interiors);
-            $view->with('services',$services);
+
+
+        view()->composer(
+            ['layouts.header', 
+            'home.cart', 
+            'home.checkout',
+            ], 
+        function ($view) use ($interiorService, $serviceService, $cartService) {
+            $view->with('interiors', $interiorService->getAllInteriors());
+            $view->with('services', $serviceService->getAllServices());
+            $view->with('cartCount', $cartService->countItems());
+            $view->with('cartTotal', $cartService->totalPrice());
          });
     }
 }

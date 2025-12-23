@@ -29,4 +29,9 @@ class Accounts extends Authenticatable
     {
         return $this->hasOne(Profiles::class, 'account_id');
     }
+
+    public function carts()
+    {
+        return $this->hasMany(Carts::class, 'account_id');
+    }
 }

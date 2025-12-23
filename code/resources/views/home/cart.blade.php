@@ -1,8 +1,5 @@
 @extends('layouts.master')
 @section('content')
-  @php
-      $cartTotal = collect(session('cart', []))->sum(fn($i) => $i['qty'] * $i['price']);
-  @endphp
       <!-- Single Page Header start -->
         <div class="container-fluid page-header py-5">
             <h1 class="text-center text-white display-6">Cart</h1>
@@ -47,20 +44,20 @@
                                 <td>
                                     <div class="input-group quantity mt-4" style="width: 100px;">
                                         <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border" >
+                                            <button class="btn btn-sm btn-minus rounded-circle bg-light border qty-btn" data-id="{{ $item['id'] }}" data-action="minus">
                                             <i class="fa fa-minus"></i>
                                             </button>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm text-center border-0" value="{{ $item['qty'] }}">
+                                        <input type="text" class="form-control form-control-sm text-center border-0 product-qty" value="{{ $item['qty'] }}">
                                         <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border">
+                                            <button class="btn btn-sm btn-plus rounded-circle bg-light border qty-btn" data-id="{{ $item['id'] }}" data-action="plus">
                                                 <i class="fa fa-plus"></i>
                                             </button>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <p class="mb-0 mt-4">{{ number_format($item['price'] * $item['qty'], 0) }}</p>
+                                    <p class="mb-0 mt-4 subtotal">{{ number_format($item['price'] * $item['qty'], 0) }}đ</p>
                                 </td>
                                 <td>
                                     <button class="btn btn-md rounded-circle bg-light border mt-4 remove-cart-item" data-id="{{ $item['id'] }}">

@@ -1,7 +1,5 @@
   <!-- Navbar start -->
-  @php
-      $cartTotal = collect(session('cart', []))->sum(fn($i) => $i['qty'] * $i['price']);
-  @endphp
+ 
   <div class="container-fluid fixed-top">
       <div class="container topbar bg-primary d-none d-lg-block">
           <div class="d-flex justify-content-between">
@@ -77,16 +75,15 @@
 
                           </form>
                       </div>
-                      {{-- @dd(session('cart')) --}}
 
                       <div class="cart-wrapper" style="position: relative; display: inline-block;">
                           <div class="cart-icon me-4 my-auto" style="cursor:pointer; position:relative; padding:6px;">
                               <i class="fa fa-shopping-bag fa-2x text-primary"></i>
                               <span
-                                  class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-white px-1 cart-count"style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{ count(session('cart', [])) ?? 0 }}</span>
+                                  class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-white px-1 cart-count"style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{ $cartCount ?? 0 }}</span>
                           </div>
                           <div class="cart-dropdown">
-                              <div class="cart-header">Giỏ hàng ({{ count(session('cart', [])) ?? 0 }})</div>
+                              <div class="cart-header">Giỏ hàng ({{ $cartCount ?? 0 }})</div>
                               <ul class="cart-items">
                                   @forelse(session('cart', []) as $item)
                                       <li class="cart-item" data-id="{{ $item['id'] }}">
@@ -95,7 +92,7 @@
                                           <div class="item-info">
                                               <div class="item-name">{{ $item['name'] }}</div>
                                               <div class="item-qty-price">
-                                                  {{ $item['qty'] }} × {{ number_format($item['price']) }}đ
+                                                  <span class="cart-qty">{{ $item['qty'] }}</span> × {{ number_format($item['price']) }}đ
                                               </div>
                                           </div>
 
