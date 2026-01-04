@@ -11,31 +11,35 @@ use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\HomeMiddleware;
 
-use function Symfony\Component\String\s;
 
 Route::name('home.')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('index');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
-    Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
     Route::get('/products', [HomeController::class, 'products'])->name('products');
     Route::get('/product/{slug}', [HomeController::class, 'productDetail'])->name('product.detail');
-    Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
     Route::get('/login', [HomeController::class, 'login'])->name('login');
     Route::post('/login', [HomeController::class, 'processLogin'])->name('processLogin');
     Route::get('/register', [HomeController::class, 'register'])->name('register');
     Route::post('/register', [HomeController::class, 'registerProcess'])->name('registerProcess');
     Route::post('/logout', [HomeController::class, 'logout'])->name('logout');
-    Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
     Route::post('/profile/update', [HomeController::class, 'updateProfile'])->name('profile.update');
     Route::get('/interior/{slug}', [HomeController::class, 'interior'])->name('interior.show');
     Route::get('/service/{slug}', [HomeController::class, 'serviceItem'])->name('service.show');
     Route::get('/service', [HomeController::class, 'service'])->name('service');
-
+    Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
+    
     //cart routes
     Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
     Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.remove');
     Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+    
+    
+    Route::middleware([HomeMiddleware::class])->group(function () {
+        Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
+        Route::get('/checkout', [HomeController::class, 'checkout'])->name('checkout');
+    });
 });
 
 Route::name('admin.')->prefix('admin')->group(function () {

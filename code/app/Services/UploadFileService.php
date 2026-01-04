@@ -52,10 +52,12 @@ class UploadFileService
     /**
      * Xóa file
      */
-    public function delete(string $path)
+    public function delete(?string $path)
     {
-        if (Storage::disk('public')->exists($path)) {
-            Storage::disk('public')->delete($path);
+          if (!$path) {
+            return;
         }
+
+        Storage::disk('public')->delete($path);
     }
 }

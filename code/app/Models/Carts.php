@@ -18,4 +18,8 @@ class Carts extends Model
     {
         return $this->belongsTo(Accounts::class, 'account_id');
     }
+    public function product()
+    {
+        return $this->belongsTo(Products::class, 'product_id');
+    }
 }

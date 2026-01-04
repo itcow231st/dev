@@ -34,6 +34,7 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('services', $serviceService->getAllServices());
             $view->with('cartCount', $cartService->countItems());
             $view->with('cartTotal', $cartService->totalPrice());
+            $view->with('cartItems', $cartService->items());
          });
     }
 }

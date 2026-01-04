@@ -22,16 +22,21 @@ class CartService
     //     return Session::get($this->key, []);
     // }
 
-     public function get(): array
+    public function get(): array
     {
-        // User đã login → lấy từ DB
         if (Auth::guard('web')->check()) {
-            return Auth::user()
-                ->cartItems
+
+            $user = Auth::guard('web')->user();
+
+            // 🔥 BẮT BUỘC gọi () để lấy Collection
+            return $user->carts()
+                ->with('product')
+                ->get()
                 ->keyBy('product_id')
-                ->map(fn ($item) => [
+                ->map(fn($item) => [
                     'id'    => $item->product_id,
-                    'name'  => $item->product->name,
+                    'name'  => $item->product->name ?? '',
+                    'image' => $item->product->image ?? '',
                     'qty'   => $item->qty,
                     'price' => $item->price,
                     'total' => $item->qty * $item->price,
@@ -39,73 +44,181 @@ class CartService
                 ->toArray();
         }
 
-        // Guest → lấy session
         return session('cart', []);
     }
 
+    public function items(): array
+    {
+        if (auth('web')->check()) {
+            return $this->itemsFromDatabase();
+        }
+
+        return $this->itemsFromSession();
+    }
+
+    protected function itemsFromDatabase(): array
+    {
+        return auth('web')->user()
+            ->carts()
+            ->with('product')
+            ->get()
+            ->keyBy(fn($cart) => (int) $cart->product_id)
+            ->map(fn($cart) => [
+                'id'       => $cart->product_id,
+                'name'     => $cart->product->name ?? '',
+                'image'    => $cart->product->image_url ?? '',
+                'qty'      => $cart->qty,
+                'price'    => $cart->price,
+                'subtotal' => $cart->qty * $cart->price,
+            ])
+            ->toArray();
+    }
+
+    protected function itemsFromSession(): array
+    {
+        return collect(session('cart', []))
+            ->keyBy(fn($item) => (int) $item['id'])
+            ->map(fn($item) => [
+                'id'       => $item['id'],
+                'name'     => $item['name'],
+                'image'    => $item['image'] ?? '',
+                'qty'      => $item['qty'],
+                'price'    => $item['price'],
+                'subtotal' => $item['qty'] * $item['price'],
+            ])
+            ->toArray();
+    }
+
+
     public function add(int $productId, int $qty = 1): array
     {
-        $cart = $this->get();
-
         $product = $this->productModel::findOrFail($productId);
 
-        if (isset($cart[$productId])) {
-            $cart[$productId]['qty'] += $qty;
+        if (auth('web')->check()) {
+            $cart = auth('web')->user()
+                ->carts()
+                ->where('product_id', $productId)
+                ->first();
+
+            if ($cart) {
+                $cart->increment('qty', $qty);
+            } else {
+                auth('web')->user()->carts()->create([
+                    'product_id' => $product->id,
+                    'qty'        => $qty,
+                    'price'      => $product->price,
+                ]);
+            }
         } else {
-            $cart[$productId] = [
-                'id'    => $product->id,
-                'name'  => $product->name,
-                'price' => $product->price,
-                'qty'   => $qty,
-                'image' => $product->image_url,
-            ];
-        }
+            $cart = session('cart', []);
 
-        Session::put($this->key, $cart);
-
-        return $cart;
-    }
-
-    public function update(int $productId, string $action)
-    {
-        $cart = $this->get();
-        if (isset($cart[$productId])) {
-            if ($action === 'plus') {
-                $cart[$productId]['qty']++;
-            } elseif ($action === 'minus' && $cart[$productId]['qty'] > 1) {
-                $cart[$productId]['qty']--;
-            }elseif($action === 'minus' && $cart[$productId]['qty'] == 1){
-                unset($cart[$productId]);
-                Session::put($this->key, $cart);
-                return [
-                    'removed' => true,
-                    'cart_count' => $this->countItems(),
-                    'cart_total' => $this->totalPrice(),
+            if (isset($cart[$productId])) {
+                $cart[$productId]['qty'] += $qty;
+            } else {
+                $cart[$productId] = [
+                    'id'    => $product->id,
+                    'name'  => $product->name,
+                    'price' => $product->price,
+                    'qty'   => $qty,
+                    'image' => $product->image_url,
                 ];
             }
-            Session::put($this->key, $cart);
+
+            session(['cart' => $cart]);
         }
+
+        // 🔥 RETURN CHO AJAX
+        return $this->response();
+    }
+
+
+    public function update(int $productId, string $action): array
+    {
+        if (auth('web')->check()) {
+
+            $cart = auth('web')->user()
+                ->carts()
+                ->where('product_id', $productId)
+                ->first();
+
+            if (!$cart) {
+                return $this->response(false);
+            }
+
+            if ($action === 'plus') {
+                $cart->increment('qty');
+            }
+
+            if ($action === 'minus') {
+                if ($cart->qty <= 1) {
+                    $cart->delete();
+                    return $this->response(true, true);
+                }
+                $cart->decrement('qty');
+            }
+        } else {
+
+            $cart = session('cart', []);
+
+            if (!isset($cart[$productId])) {
+                return $this->response(false);
+            }
+
+            if ($action === 'plus') {
+                $cart[$productId]['qty']++;
+            }
+
+            if ($action === 'minus') {
+                if ($cart[$productId]['qty'] <= 1) {
+                    unset($cart[$productId]);
+                    session(['cart' => $cart]);
+                    return $this->response(true, true);
+                }
+                $cart[$productId]['qty']--;
+            }
+
+            session(['cart' => $cart]);
+        }
+
+        $response = $this->response(true);
+        $response['new_qty'] = $this->currentQty($productId);
+        return $response;
+    }
+
+    protected function currentQty(int $productId): int
+    {
+        $item = collect($this->items())->get($productId);
+
+        return $item['qty'] ?? 0;
+    }
+
+    public function remove(int $productId): array
+    {
+        if (auth('web')->check()) {
+            auth('web')->user()
+                ->carts()
+                ->where('product_id', $productId)
+                ->delete();
+        } else {
+            $cart = session('cart', []);
+            unset($cart[$productId]);
+            session(['cart' => $cart]);
+        }
+
+        return $this->response(true, true);
+    }
+    protected function response(bool $changed = true, bool $removed = false): array
+    {
         return [
-            'removed' => false,
-            'cart' => $cart,
-            'new_qty' => $cart[$productId]['qty'] ?? 0,
-            'subtotal' => $cart[$productId]['qty'] * $cart[$productId]['price'] ?? 0,
-            'cart_total' => $this->totalPrice(),
-            'cart_count' => $this->countItems(),
+            'status'     => true,
+            'changed'    => $changed,
+            'removed'    => $removed,
+            'cartItems'  => $this->items(),
+            'cartCount'  => $this->countItems(),
+            'cartTotal'  => $this->totalPrice(),
+            'subtotal'   => $this->subtotal(request()->product_id ?? 0),
+            'cart_html' => view('layouts.header')->render(),
         ];
-    }
-
-    public function remove(int $productId)
-    {
-        $cart = $this->get();
-        unset($cart[$productId]);
-        Session::put($this->key, $cart);
-        return $cart;
-    }
-
-    public function clear(): void
-    {
-        Session::forget($this->key);
     }
 
     public function countItems(): int
@@ -116,6 +229,17 @@ class CartService
     public function totalPrice(): float
     {
         return collect($this->get())->sum(fn($item) => $item['qty'] * $item['price']);
+    }
+
+    public function subtotal(int $productId): float
+    {
+
+        if ($productId <= 0) {
+            return 0;
+        }
+
+        $item = collect($this->items())->get($productId);
+        return $item ? $item['qty'] * $item['price'] : 0;
     }
     public function mergeGuestCartToUser(int $userId): void
     {

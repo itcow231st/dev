@@ -24,7 +24,7 @@ $(document).on('click', '.add-to-cart', function (e) {
         },
         success(res) {
             if (res.status) {
-                updateCartCount(res.cart_count);
+                updateCartCount(res.cartCount);
                 if (res.cart_html) {
                     $('.cart-wrapper').replaceWith(
                         $(res.cart_html).find('.cart-wrapper'));
@@ -78,12 +78,12 @@ $(document).on('click', '.qty-btn', function () {
                     });
 
                      // Cập nhật tổng tiền giỏ hàng
-                    updateCartTotal(number_format(res.cart_total) + 'đ');
+                    updateCartTotal(number_format(res.cartTotal) + 'đ');
 
                     // Cập nhật số lượng giỏ hàng ở header
-                    updateCartCount(res.cart_count);
+                    updateCartCount(res.cartCount);
 
-                    if(res.cart_count === 0) {
+                    if(res.cartCount === 0) {
                         $('.cart-items').html(
                             '<li class="empty-cart">Giỏ hàng trống</li>'
                         );
@@ -100,10 +100,10 @@ $(document).on('click', '.qty-btn', function () {
                     dropdownItem.find('.item-total').text(number_format(res.subtotal) + 'đ');
 
                     // Cập nhật tổng tiền giỏ hàng
-                    updateCartTotal(number_format(res.cart_total) + 'đ');
+                    updateCartTotal(number_format(res.cartTotal) + 'đ');
 
                     // Cập nhật số lượng giỏ hàng ở header
-                    updateCartCount(res.cart_count);
+                    updateCartCount(res.cartCount);
                 }
             }
         }
@@ -135,12 +135,12 @@ $(document).on('click', '.remove-cart-item', function (e) {
                     $(this).remove();
                 });
                 // 2️⃣ Update số lượng
-                updateCartCount(res.cart_count);
+                updateCartCount(res.cartCount);
 
-                updateCartTotal(number_format(res.cart_total) + 'đ');
+                updateCartTotal(number_format(res.cartTotal) + 'đ');
 
                 // 3️⃣ Nếu giỏ hàng trống
-                if (res.cart_count === 0) {
+                if (res.cartCount === 0) {
                     $('.cart-items').html(
                         '<li class="empty-cart">Giỏ hàng trống</li>'
                     );

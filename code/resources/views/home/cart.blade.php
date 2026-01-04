@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('content')
+
       <!-- Single Page Header start -->
         <div class="container-fluid page-header py-5">
             <h1 class="text-center text-white display-6">Cart</h1>
@@ -28,7 +29,8 @@
                           </tr>
                         </thead>
                         <tbody>
-                            @forelse (session('cart',[]) as $item)
+                            @forelse ($cartItems as $item)
+                         
                                 <tr data-id="{{ $item['id'] }}">
                                 <th scope="row">
                                     <div class="d-flex align-items-center">

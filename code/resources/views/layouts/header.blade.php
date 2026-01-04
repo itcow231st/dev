@@ -85,7 +85,7 @@
                           <div class="cart-dropdown">
                               <div class="cart-header">Giỏ hàng ({{ $cartCount ?? 0 }})</div>
                               <ul class="cart-items">
-                                  @forelse(session('cart', []) as $item)
+                                  @forelse($cartItems as $item)
                                       <li class="cart-item" data-id="{{ $item['id'] }}">
                                           <img src="{{ $item['image'] ? asset('storage/' . $item['image']) : asset('images/no-image.png') }}"
                                               alt="{{ $item['name'] }}">
