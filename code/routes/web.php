@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InteriorController;
 use App\Http\Controllers\Admin\ProductController;
@@ -56,6 +57,14 @@ Route::name('admin.')->prefix('admin')->group(function () {
         Route::get('/interior/edit/{id}', [InteriorController::class, 'edit'])->name('interior.edit');
         Route::post('/interior/update', [InteriorController::class, 'update'])->name('interior.update');
         Route::delete('/interior/destroy', [InteriorController::class, 'destroy'])->name('interior.destroy');
+
+             // Category Routes
+        Route::get('/category', [CategoriesController::class, 'index'])->name('categories.index');
+        Route::get('/category/create', [CategoriesController::class, 'create'])->name('categories.create');
+        Route::post('/category/store', [CategoriesController::class, 'store'])->name('categories.store');
+        Route::get('/category/edit/{id}', [CategoriesController::class, 'edit'])->name('categories.edit');
+        Route::post('/category/update', [CategoriesController::class, 'update'])->name('categories.update');
+        Route::delete('/category/destroy', [CategoriesController::class, 'destroy'])->name('categories.destroy');
 
         // SERVICE Routes
         Route::get('/service', [ServiceController::class, 'index'])->name('service.index');

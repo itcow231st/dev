@@ -1,5 +1,5 @@
   <!-- Navbar start -->
- 
+
   <div class="container-fluid fixed-top">
       <div class="container topbar bg-primary d-none d-lg-block">
           <div class="d-flex justify-content-between">
@@ -30,16 +30,90 @@
                   <div class="navbar-nav mx-auto">
                       <a href="{{ route('home.index', [], false) }}" class="nav-item nav-link">Trang chủ</a>
                       <a href="{{ route('home.products', [], false) }}" class="nav-item nav-link ">Cửa hàng</a>
-                      <div class="nav-item dropdown">
+                      <!-- <div class="nav-item dropdown">
                           <a href="{{ route('home.products') }}" class="nav-link dropdown-toggle"
                               data-bs-toggle="dropdown">Nội thất</a>
                           <div class="dropdown-menu m-0 bg-secondary rounded-0">
                               @foreach ($interiors as $interior)
-                                  <a href="{{ route('home.interior.show', $interior) }}"
+<a href="{{ route('home.interior.show', $interior) }}"
                                       class="dropdown-item">{{ $interior->name }}</a>
-                              @endforeach
+@endforeach
+                          </div>
+                      </div> -->
+                      <div class="nav-item dropdown mega-dropdown position-static">
+                          <a href="{{ route('home.products') }}" class="nav-link dropdown-toggle"
+                              data-bs-toggle="dropdown">
+                              Sản phẩm
+                          </a>
+
+                          <div class="dropdown-menu mega-menu w-100 shadow border-0">
+                              <div class="container">
+                                  <div class="row py-4">
+
+                                      <!-- CỘT 1 -->
+                                      <div class="col-md-3 col-12">
+                                          <h6 class="mega-title"><a href="#">Nội thất phòng học, làm việc</a></h6>
+                                          <a href="#" class="mega-link">Bàn học – bàn làm việc</a>
+                                          <a href="#" class="mega-link">Tủ kệ văn phòng</a>
+                                          <a href="#" class="mega-link">Kệ sách – trang trí</a>
+                                          <a href="#" class="mega-link">Tủ hồ sơ</a>
+                                          <a href="#" class="mega-link">Quầy tiếp tân</a>
+                                      </div>
+
+                                      <!-- CỘT 2 -->
+                                      <div class="col-md-3 col-12">
+                                          <h6 class="mega-title">Nội thất nhà bếp, phòng ăn</h6>
+                                          <a href="#" class="mega-link">Bàn ăn</a>
+                                          <a href="#" class="mega-link">Tủ nhà bếp</a>
+                                          <a href="#" class="mega-link">Quầy bar</a>
+                                          <a href="#" class="mega-link">Tủ rượu</a>
+                                          <a href="#" class="mega-link">Kệ lò vi sóng</a>
+                                      </div>
+
+                                      <!-- CỘT 3 -->
+                                      <div class="col-md-3 col-12">
+                                          <h6 class="mega-title">Nội thất phòng khách</h6>
+                                          <a href="#" class="mega-link">Kệ tivi</a>
+                                          <a href="#" class="mega-link">Bàn trà</a>
+                                          <a href="#" class="mega-link">Tủ giày</a>
+                                          <a href="#" class="mega-link">Tủ kệ trang trí</a>
+                                          <a href="#" class="mega-link">Vách ngăn</a>
+                                      </div>
+
+                                      <!-- CỘT 4 -->
+                                      <div class="col-md-3 col-12">
+                                          <h6 class="mega-title">Nội thất phòng ngủ</h6>
+                                          <a href="#" class="mega-link">Giường ngủ</a>
+                                          <a href="#" class="mega-link">Tủ quần áo</a>
+                                          <a href="#" class="mega-link">Bàn trang điểm</a>
+                                          <a href="#" class="mega-link">Kệ trang trí</a>
+                                          <a href="#" class="mega-link">Giường tầng</a>
+                                      </div>
+                                      
+                                      <div class="col-md-3 col-12">
+                                          <h6 class="mega-title">Nội thất phòng tắm - giặt</h6>
+                                          <a href="#" class="mega-link">Tủ kệ nhà tắm</a>
+                                          <a href="#" class="mega-link">Kệ máy giặt</a>
+                                      </div>
+
+                                      <div class="col-md-3 col-12">
+                                          <h6 class="mega-title">Sản phẩm mới</h6>
+                                          <a href="#" class="mega-link">Bộ sưu tập mới</a>
+                                          <a href="#" class="mega-link">Xu hướng 2026</a>
+                                      </div>
+
+                                      <div class="col-md-3 col-12">
+                                          <h6 class="mega-title">Deal sốc mỗi ngày</h6>
+                                          <a href="#" class="mega-link">Giảm giá hôm nay</a>
+                                          <a href="#" class="mega-link">Combo tiết kiệm</a>
+                                      </div>
+
+                                      <div class="col-md-3 col-12"></div>
+                                  </div>
+                              </div>
                           </div>
                       </div>
+
                       <div class="nav-item dropdown">
                           <a href="{{ route('home.service') }}" class="nav-link dropdown-toggle"
                               data-bs-toggle="dropdown">Dịch vụ</a>
@@ -59,7 +133,8 @@
 
                               <!-- Input Desktop: luôn hiển thị -->
                               <input id="searchInputDesktop" name="q" type="text"
-                                  class="form-control d-none d-lg-block search-desktop-input" placeholder="Tìm kiếm...">
+                                  class="form-control d-none d-lg-block search-desktop-input"
+                                  placeholder="Tìm kiếm...">
 
                               <!-- Icon Search -->
                               <button type="button" id="btnSearch"
@@ -92,7 +167,8 @@
                                           <div class="item-info">
                                               <div class="item-name">{{ $item['name'] }}</div>
                                               <div class="item-qty-price">
-                                                  <span class="cart-qty">{{ $item['qty'] }}</span> × {{ number_format($item['price']) }}đ
+                                                  <span class="cart-qty">{{ $item['qty'] }}</span> ×
+                                                  {{ number_format($item['price']) }}đ
                                               </div>
                                           </div>
 

@@ -217,6 +217,46 @@
     color: #a71d2a;
 }
 
+/* Mega menu */
+.mega-dropdown .dropdown-menu {
+    top: 100%;
+    left: 0;
+}
+
+.mega-menu {
+    background: #ffffff;
+}
+
+/* Tiêu đề cột */
+.mega-title {
+    color: #0d6efd;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* Link trong mega menu */
+.mega-link {
+    display: block;
+    color: #666;
+    font-size: 15px;
+    padding: 4px 0;
+    text-decoration: none;
+}
+
+.dropdown .dropdown-menu a:hover {
+    color: #0d6efd;
+    background: #e9ecef;
+   
+}
+
+/* Hover mở menu (giống ảnh – không cần click) */
+@media (min-width: 992px) {
+    .mega-dropdown:hover .dropdown-menu {
+        display: block;
+    }
+}
+
+
     </style>
     @yield('css')
 </head>

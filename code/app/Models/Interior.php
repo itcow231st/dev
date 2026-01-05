@@ -26,4 +26,9 @@ class Interior extends Model
     {
         return 'slug';
     }
+
+    public function categories()
+    {
+        return $this->hasMany(Categories::class, 'interior_id');
+    }
 }

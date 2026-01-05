@@ -55,6 +55,10 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Interiors
                             </a>
+                             <a class="nav-link" href="{{ route('admin.categories.index') }}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                                Categories
+                            </a>
                             <a class="nav-link" href="{{ route('admin.service.index') }}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Services
