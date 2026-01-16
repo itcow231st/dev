@@ -27,6 +27,7 @@ Route::name('home.')->group(function () {
     Route::post('/logout', [HomeController::class, 'logout'])->name('logout');
     Route::post('/profile/update', [HomeController::class, 'updateProfile'])->name('profile.update');
     Route::get('/interior/{slug}', [HomeController::class, 'interior'])->name('interior.show');
+    Route::get('/category/{slug}', [HomeController::class, 'category'])->name('category.show');
     Route::get('/service/{slug}', [HomeController::class, 'serviceItem'])->name('service.show');
     Route::get('/service', [HomeController::class, 'service'])->name('service');
     Route::get('/cart', [HomeController::class, 'cart'])->name('cart');
@@ -74,6 +75,9 @@ Route::name('admin.')->prefix('admin')->group(function () {
         Route::post('/service/update', [ServiceController::class, 'update'])->name('service.update');
         Route::delete('/service/destroy', [ServiceController::class, 'destroy'])->name('service.destroy');
 
+       
+
+
         //Product Routes
         Route::get('/product', [ProductController::class, 'index'])->name('product.index');
         Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
@@ -81,6 +85,8 @@ Route::name('admin.')->prefix('admin')->group(function () {
         Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
         Route::post('/product/update', [ProductController::class, 'update'])->name('product.update');
         Route::delete('/product/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
+
+         Route::get('/products/datatable', [ProductController::class, 'datatable'])->name('product.datatable');
 
         //Role Routes
         Route::get('/role', [RoleController::class, 'index'])->name('role.index');

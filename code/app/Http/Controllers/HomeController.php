@@ -6,6 +6,7 @@ use App\Http\Requests\AuthRequest;
 use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Services\AccountService;
+use App\Services\CategoriesService;
 use App\Services\InteriorService;
 use App\Services\ProductService;
 use App\Services\ProfileService;
@@ -19,11 +20,13 @@ class HomeController extends Controller
     protected $productService;
     protected $accountService;
     protected $profileService;
+    protected $categoryService;
     public function __construct()
     {   
         $this->serviceService = new ServiceService();
         $this->interiorService = new InteriorService();
         $this->productService = new ProductService();
+        $this->categoryService = new CategoriesService();
         $this->accountService = new AccountService();
         $this->profileService = new ProfileService();
         
@@ -32,7 +35,9 @@ class HomeController extends Controller
     public function index()
     {
         $products = $this->productService->getProductBetsSellers();
-        return view('home.index', compact('products'));
+        $interiors = $this->interiorService->getAllInteriors();
+        $services = $this->serviceService->getAllServices();
+        return view('home.index', compact('products', 'interiors', 'services'));
     }
 
     public function contact()
@@ -42,7 +47,8 @@ class HomeController extends Controller
 
     public function products()
     {
-        return view('home.products');
+        $products = $this->productService->getAllProducts()->paginate(12);
+        return view('home.products', compact('products'));
     }
 
    public function productDetail($slug)
@@ -120,6 +126,12 @@ class HomeController extends Controller
         $interiors = $this->interiorService->getInteriorBySlug($slug);
         $products = $interiors->products;
         return redirect()->route('home.products')->with('products',$products);
+    }
+    public function category($slug)
+    {
+        $categories = $this->categoryService->getCategoryBySlug($slug);
+        $products = $categories->products;
+        return view('home.products', compact('products'));
     }
     public function service()
     {

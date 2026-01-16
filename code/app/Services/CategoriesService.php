@@ -20,6 +20,11 @@ class CategoriesService
         return $categories;
     }
 
+    public function getCategoryBySlug($slug)
+    {
+        return $this->categoryModel->where('slug', $slug)->first();
+    }
+
     public function createCategory($data)
     {
        DB::beginTransaction();

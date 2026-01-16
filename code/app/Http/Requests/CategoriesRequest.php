@@ -22,10 +22,11 @@ class CategoriesRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->input('id');
         return [
             'name' => [
                 'required',
-                Rule::unique('categories')->ignore($this->category),
+                 Rule::unique('categories','name')->ignore($id)
             ],
             'image_url' => 'nullable',
             'interior_id' => 'required|exists:interior,id',

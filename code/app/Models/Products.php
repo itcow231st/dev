@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\Traits\Sluggable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Products extends Model
 {
     use Sluggable;
+    use HasFactory;
     protected $slugFrom = 'name';
     protected $table = 'products';
     protected $fillable = [
@@ -16,12 +18,13 @@ class Products extends Model
         'price',
         'image_url',
         'slug',
-        'interior_id',
+        'category_id',
     ];
 
-    public function interior()
+
+    public function category()
     {
-        return $this->belongsTo(Interior::class, 'interior_id');
+        return $this->belongsTo(Categories::class, 'category_id');
     }
 
     public function carts()

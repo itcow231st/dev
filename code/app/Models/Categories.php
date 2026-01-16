@@ -22,4 +22,9 @@ class Categories extends Model
     {
         return $this->belongsTo(Interior::class, 'interior_id');
     }
+
+    public function products()
+    {
+        return $this->hasMany(Products::class, 'category_id');
+    }
 }

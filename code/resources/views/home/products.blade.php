@@ -19,6 +19,30 @@
         transform: translateY(-4px);
         box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
     }
+
+    /* FIX pagination hiển thị ngang */
+.pagination {
+    display: flex !important;
+    justify-content: center;
+    gap: 6px;
+}
+
+.pagination ul {
+    display: flex !important;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.pagination li {
+    display: inline-block !important;
+}
+
+.pagination .page-link {
+    display: inline-block !important;
+     border-radius: 6px;
+    padding: 6px 12px;
+}
+
 </style>
 
 @endsection
@@ -73,14 +97,14 @@
         <div class="row g-4 justify-content-center">
 
             <!-- PRODUCT ITEM -->
-            @for ($i = 1; $i <= 12; $i++)
+            @foreach ($products as $item)
                 <div class="col-6 col-md-4 col-lg-3">
                     <div class="rounded position-relative shadow-sm product-card bg-white">
 
                         <!-- Ảnh sản phẩm -->
                         <div class="fruite-img">
-                            <a href="{{route('home.product.detail',['slug'=>'test'])}}">
-                                <img src="/img/fruite-item-{{ rand(1,5) }}.jpg"
+                            <a href="{{route('home.product.detail',['slug'=>$item->slug])}}">
+                                <img src="{{ config('url.product') . '/' . $item->image_url }}"
                                      class="img-fluid w-100 rounded-top"
                                      alt="">
                             </a>
@@ -89,13 +113,13 @@
                         <!-- Tag danh mục -->
                         <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
                              style="top: 10px; left: 10px; font-size: 12px;">
-                            Fruits
+                            {{ $item->category->name }}
                         </div>
 
                         <div class="p-3 border border-light border-top-0 rounded-bottom">
 
                             <!-- Tên sản phẩm -->
-                            <h6 class="fw-bold mb-2">Sản phẩm {{ $i }}</h6>
+                            <h6 class="fw-bold mb-2">{{ $item->name }}</h6>
 
                             <!-- Số lượng đã bán -->
                             <p class="text-muted small mb-2">
@@ -104,7 +128,7 @@
 
                             <!-- Giá + nút -->
                             <div class="d-flex justify-content-between align-items-center">
-                                <p class="text-dark fw-bold fs-5 mb-0">$4.99</p>
+                                <p class="text-dark fw-bold fs-5 mb-0">{{ number_format($item->price, 0, ',', '.') }}</p>
                                 <button class="btn border border-secondary rounded-pill px-3 text-primary">
                                     <i class="fa fa-shopping-bag me-2"></i> Add
                                 </button>
@@ -112,19 +136,22 @@
                         </div>
                     </div>
                 </div>
-            @endfor
+            @endforeach
             <!-- END PRODUCT ITEM -->
 
         </div>
 
         <!-- Pagination -->
         <div class="pagination d-flex justify-content-center mt-5">
+    {{ $products->links('pagination::bootstrap-5') }}
+</div>
+        {{-- <div class="pagination d-flex justify-content-center mt-5">
             <a href="#" class="rounded">&laquo;</a>
             <a href="#" class="active rounded">1</a>
             <a href="#" class="rounded">2</a>
             <a href="#" class="rounded">3</a>
             <a href="#" class="rounded">&raquo;</a>
-        </div>
+        </div> --}}
 
     </div>
 </div>

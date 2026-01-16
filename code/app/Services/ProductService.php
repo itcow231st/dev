@@ -17,7 +17,7 @@ class ProductService
 
     public function getAllProducts()
     {
-       return $this->model->with('interior')->get();
+       return $this->model->with('category');
     }
 
     public function getProductById($id)
@@ -32,7 +32,7 @@ class ProductService
 
     public function getProductBetsSellers()
     {
-        $products = $this->model->with('interior')->limit(8)->get();
+        $products = $this->model->with('category')->limit(8)->get();
         return $products;
     }
     

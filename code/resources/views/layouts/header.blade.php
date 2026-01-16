@@ -51,50 +51,16 @@
                                   <div class="row py-4">
 
                                       <!-- CỘT 1 -->
+                                      @foreach ($interiors as $interior)
                                       <div class="col-md-3 col-12">
-                                          <h6 class="mega-title"><a href="#">Nội thất phòng học, làm việc</a></h6>
-                                          <a href="#" class="mega-link">Bàn học – bàn làm việc</a>
-                                          <a href="#" class="mega-link">Tủ kệ văn phòng</a>
-                                          <a href="#" class="mega-link">Kệ sách – trang trí</a>
-                                          <a href="#" class="mega-link">Tủ hồ sơ</a>
-                                          <a href="#" class="mega-link">Quầy tiếp tân</a>
+                                          <h6 class="mega-title"><a href="#">{{ $interior->name }}</a></h6>
+                                          @foreach ($interior->Categories as $subCategory)
+                                          <a href="{{ route('home.category.show', $subCategory->slug) }}" class="mega-link">{{ $subCategory->name }}</a>
+                                          @endforeach
                                       </div>
+                                        @endforeach
 
                                       <!-- CỘT 2 -->
-                                      <div class="col-md-3 col-12">
-                                          <h6 class="mega-title">Nội thất nhà bếp, phòng ăn</h6>
-                                          <a href="#" class="mega-link">Bàn ăn</a>
-                                          <a href="#" class="mega-link">Tủ nhà bếp</a>
-                                          <a href="#" class="mega-link">Quầy bar</a>
-                                          <a href="#" class="mega-link">Tủ rượu</a>
-                                          <a href="#" class="mega-link">Kệ lò vi sóng</a>
-                                      </div>
-
-                                      <!-- CỘT 3 -->
-                                      <div class="col-md-3 col-12">
-                                          <h6 class="mega-title">Nội thất phòng khách</h6>
-                                          <a href="#" class="mega-link">Kệ tivi</a>
-                                          <a href="#" class="mega-link">Bàn trà</a>
-                                          <a href="#" class="mega-link">Tủ giày</a>
-                                          <a href="#" class="mega-link">Tủ kệ trang trí</a>
-                                          <a href="#" class="mega-link">Vách ngăn</a>
-                                      </div>
-
-                                      <!-- CỘT 4 -->
-                                      <div class="col-md-3 col-12">
-                                          <h6 class="mega-title">Nội thất phòng ngủ</h6>
-                                          <a href="#" class="mega-link">Giường ngủ</a>
-                                          <a href="#" class="mega-link">Tủ quần áo</a>
-                                          <a href="#" class="mega-link">Bàn trang điểm</a>
-                                          <a href="#" class="mega-link">Kệ trang trí</a>
-                                          <a href="#" class="mega-link">Giường tầng</a>
-                                      </div>
-                                      
-                                      <div class="col-md-3 col-12">
-                                          <h6 class="mega-title">Nội thất phòng tắm - giặt</h6>
-                                          <a href="#" class="mega-link">Tủ kệ nhà tắm</a>
-                                          <a href="#" class="mega-link">Kệ máy giặt</a>
-                                      </div>
 
                                       <div class="col-md-3 col-12">
                                           <h6 class="mega-title">Sản phẩm mới</h6>

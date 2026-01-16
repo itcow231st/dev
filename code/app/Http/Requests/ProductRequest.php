@@ -24,7 +24,7 @@ class ProductRequest extends FormRequest
     {
         $id = $this -> input('id');
         return [
-            'interior_id' => 'required',
+            'category_id' => 'required',
             'name' => [
                 'required',
                 Rule::unique('products','name')->ignore($id)
@@ -38,7 +38,7 @@ class ProductRequest extends FormRequest
     public function messages()
     {
         return [
-            'interior_id.required' => 'Vui lòng chọn :attribute',
+            'category_id.required' => 'Vui lòng chọn :attribute',
             'name.required' => 'Vui lòng nhập :attribute',
             'name.unique' => ':attribute đã tồn tại',
             'price.required' => 'Vui lòng nhập :attribute'
@@ -48,7 +48,7 @@ class ProductRequest extends FormRequest
     public function attributes()
     {
         return [
-            'interior_id' => 'danh mục',
+            'category_id' => 'danh mục',
             'name' => 'tên sản phẩm',
             'price' => 'giá sản phẩm',
             'description' => 'mô tả',

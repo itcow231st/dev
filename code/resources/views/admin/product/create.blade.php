@@ -22,14 +22,14 @@
                 <input type="file" class="form-control" id="image_url" name="image_url" >
             </div>  
             <div class="mb-3">
-                <label for="interior_id" class="form-label">Interior</label>
-                <select class="form-select" id="interior_id" name="interior_id" >
-                    <option value="">Select Interior</option>
-                    @foreach($interiors as $interior)
-                        <option value="{{ $interior->id }}">{{ $interior->name }}</option>
+                <label for="category_id" class="form-label">Category</label>
+                <select class="form-select" id="category_id" name="category_id" >
+                    <option value="">Select Category</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
-                 @error('interior_id') <small class="text-danger">{{ $message }}</small> @enderror
+                 @error('category_id') <small class="text-danger">{{ $message }}</small> @enderror
             </div>
         <button type="submit" class="btn btn-primary">Create</button>
     </form>

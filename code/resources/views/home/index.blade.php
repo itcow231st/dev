@@ -20,6 +20,77 @@
             height: 280px;
             object-fit: cover;
         }
+
+        /* CARD */
+        .vesitable-card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ẢNH CỐ ĐỊNH */
+        .vesitable-img {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .vesitable-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* BODY CHIẾM PHẦN CÒN LẠI */
+        .vesitable-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+        }
+
+        /* TITLE CỐ ĐỊNH 2 DÒNG */
+        .product-title {
+            min-height: 48px;
+            line-height: 1.4;
+            margin-bottom: 8px;
+
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        /* MÔ TẢ CỐ ĐỊNH 3 DÒNG */
+        .product-desc {
+            min-height: 66px;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+
+        /* MÔ TẢ RỖNG */
+        .product-desc.empty-desc {
+            color: #999;
+            font-style: italic;
+        }
+
+        /* FOOTER LUÔN Ở ĐÁY */
+        .vesitable-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* GIÁ */
+        .price {
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
     </style>
 @endsection
 @section('content')
@@ -181,45 +252,17 @@
             <div class="row g-4 justify-content-center category-list">
 
                 <!-- ITEM -->
-                <div class="col-6 col-md-4 col-lg-3">
-                    <a href="#" class="category-item text-center d-block p-3">
-                        <div class="category-img">
-                            <img src="https://sofahoangduc.com/wp-content/uploads/2022/03/ban-tra-ban-sofa-dep-hien-dai-04.2.jpg"
-                                alt="">
-                        </div>
-                        <h5 class="mt-3">Bàn</h5>
-                    </a>
-                </div>
-
-                <div class="col-6 col-md-4 col-lg-3">
-                    <a href="#" class="category-item text-center d-block p-3">
-                        <div class="category-img">
-                            <img src="https://file.hstatic.net/200000666677/file/ghe-ban-an-gt245-1-01_10a968c11d264b5c8378d87a6193bda9_1024x1024.jpg"
-                                alt="">
-                        </div>
-                        <h5 class="mt-3">Ghế</h5>
-                    </a>
-                </div>
-
-                <div class="col-6 col-md-4 col-lg-3">
-                    <a href="#" class="category-item text-center d-block p-3">
-                        <div class="category-img">
-                            <img src="https://noithathpro.com/uploads/giuong-hien-dai-3.jpg" alt="">
-                        </div>
-                        <h5 class="mt-3">Giường</h5>
-                    </a>
-                </div>
-
-                <div class="col-6 col-md-4 col-lg-3">
-                    <a href="#" class="category-item text-center d-block p-3">
-                        <div class="category-img">
-                            <img src="https://netdecor.com.vn/wp-content/uploads/2021/12/import-placeholder-for-1377.jpg"
-                                alt="">
-                        </div>
-                        <h5 class="mt-3">Tủ</h5>
-                    </a>
-                </div>
-
+                @foreach ($interiors as $interior)
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="#" class="category-item text-center d-block p-3">
+                            <div class="category-img">
+                                <img src="https://sofahoangduc.com/wp-content/uploads/2022/03/ban-tra-ban-sofa-dep-hien-dai-04.2.jpg"
+                                    alt="">
+                            </div>
+                            <h5 class="mt-3">{{ $interior->name }}</h5>
+                        </a>
+                    </div>
+                @endforeach
             </div>
 
 
@@ -239,47 +282,19 @@
             </div>
 
             <div class="row g-4">
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="service-card text-center p-3">
-                        <a href="#">
-                            <img src="https://bienhieudep.vn/wp-content/uploads/2019/08/bien-mat-dung-alu-chu-nhom.jpg"
-                                class="service-img rounded" alt="">
-                        </a>
-                        <div class="py-3">
-                            <a href="#" class="service-title">Biển alu</a>
+                @foreach ($services as $service)
+                    <div class="col-md-6 col-lg-6 col-xl-3">
+                        <div class="service-card text-center p-3">
+                            <a href="#">
+                                <img src="https://bienhieudep.vn/wp-content/uploads/2019/08/bien-mat-dung-alu-chu-nhom.jpg"
+                                    class="service-img rounded" alt="">
+                            </a>
+                            <div class="py-3">
+                                <a href="#" class="service-title">{{ $service->name }}</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="service-card text-center p-3">
-                        <img src="https://ledcolour.com/wp-content/uploads/2013/08/945321_463415263749947_417188877_n.jpg"
-                            class="service-img rounded" alt="">
-                        <div class="py-3">
-                            <a href="#" class="service-title">Biển led</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="service-card text-center p-3">
-                        <img src="https://thietkeinanbanghieu.com/wp-content/uploads/2024/04/bien-quang-cao-hop-den-bat-hiflex-2.jpg"
-                            class="service-img rounded" alt="">
-                        <div class="py-3">
-                            <a href="#" class="service-title">Biển hộp đèn</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="service-card text-center p-3">
-                        <img src="https://q8laservietnam.vn/wp-content/uploads/2022/08/mau-bien-quang-cao-in-bat-13.jpg"
-                            class="service-img rounded" alt="">
-                        <div class="py-3">
-                            <a href="#" class="service-title">Biển bạt</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
         </div>
@@ -325,31 +340,47 @@
     <div class="container-fluid vesitable py-5">
         <div class="container py-5">
             <h1 class="mb-0">Best Seller</h1>
+
             <div class="owl-carousel vegetable-carousel justify-content-center">
-                @foreach ($products as $product) 
-                <div class="vesitable-item border border-primary rounded position-relative vesitable-item">
-                    <a href="{{ route('home.product.detail', ['slug' => $product->slug]) }}">
-                        <div class="vesitable-img">
-                            <img src="{{ config('url.product') . '/' . $product->image_url }}"
-                                class="img-fluid w-100 rounded-top" alt="">
+                @foreach ($products as $product)
+                    <div class="vesitable-item border border-primary rounded vesitable-card">
+
+                        <a href="{{ route('home.product.detail', ['slug' => $product->slug]) }}">
+                            <div class="vesitable-img">
+                                <img src="{{ config('url.product') . '/' . $product->image_url }}"
+                                    class="img-fluid w-100 rounded-top" alt="">
+                            </div>
+                        </a>
+
+                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
+                            style="top: 10px; right: 10px;">
+                            {{ $product->category->name }}
                         </div>
-                    </a>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute"
-                        style="top: 10px; right: 10px;">{{ $product->interior->name }}</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4><a href="{{ route('home.product.detail', ['slug' => $product->slug]) }}"> {{$product->name}} </a></h4>
-                        <p>{{ $product->description }}</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="text-dark fs-5 fw-bold mb-0">{{ $product->price }}</p>
-                            <btn class="btn border border-secondary rounded-pill px-3 text-primary add-to-cart" data-product-id="{{ $product->id }}" data-qty="1" data-url= "{{ route('home.cart.add') }}">
-                                <i class="fa fa-shopping-bag me-2 text-primary "></i> Add to cart</btn>
+
+                        <div class="vesitable-body">
+                            <h4 class="product-title">
+                                <a href="{{ route('home.product.detail', ['slug' => $product->slug]) }}">
+                                    {{ $product->name }}
+                                </a>
+                            </h4>
+
+                            <p class="product-desc {{ empty($product->description) ? 'empty-desc' : '' }}">
+                                {{ $product->description ?: 'Đang cập nhật mô tả' }}
+                            </p>
+
+                            <div class="vesitable-footer">
+                                <p class="price">{{ $product->price }}</p>
+                                <btn class="btn border border-secondary rounded-pill px-3 text-primary add-to-cart">
+                                    <i class="fa fa-shopping-bag me-2"></i> Add to cart
+                                </btn>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>
     </div>
+
     <!-- bestseller Shop End -->
 
 
