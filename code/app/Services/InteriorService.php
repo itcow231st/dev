@@ -28,7 +28,7 @@ class InteriorService
 
     public function getInteriorBySlug($slug)
     {
-        return $this->model->find($slug);
+        return $this->model->where('slug', $slug)->firstOrFail();
     }
 
     public function createInterior(array $data)

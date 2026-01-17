@@ -318,8 +318,8 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('js/main.js') }}"></script>
-    <script src="{{ asset('js/cart.js') }}"></script>
     @yield('js')
+    <script src="{{ asset('js/cart.js') }}"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const btnSearch = document.getElementById("btnSearch");

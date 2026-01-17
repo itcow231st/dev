@@ -250,22 +250,20 @@
                     không gian sống hoàn hảo cho bạn.</p>
             </div>
             <div class="row g-4 justify-content-center category-list">
-
                 <!-- ITEM -->
                 @foreach ($interiors as $interior)
                     <div class="col-6 col-md-4 col-lg-3">
-                        <a href="#" class="category-item text-center d-block p-3">
+                        <a href="{{ route('home.interior.show', $interior->slug) }}"
+                            class="category-item text-center d-block p-3">
                             <div class="category-img">
-                                <img src="https://sofahoangduc.com/wp-content/uploads/2022/03/ban-tra-ban-sofa-dep-hien-dai-04.2.jpg"
-                                    alt="">
+                                <img src="{{ config('url.product') . '/' . $interior->image_url }}"
+                                    class="img-fluid w-100 rounded" alt="">
                             </div>
                             <h5 class="mt-3">{{ $interior->name }}</h5>
                         </a>
                     </div>
                 @endforeach
             </div>
-
-
         </div>
     </div>
     <!-- Product End -->
@@ -370,9 +368,13 @@
 
                             <div class="vesitable-footer">
                                 <p class="price">{{ $product->price }}</p>
-                                <btn class="btn border border-secondary rounded-pill px-3 text-primary add-to-cart">
+
+                                <button type="button"
+                                    class="btn border border-secondary rounded-pill px-3 text-primary add-to-cart"
+                                    data-url="{{ route('home.cart.add') }}" data-product-id="{{ $product->id }}"
+                                    data-qty="1">
                                     <i class="fa fa-shopping-bag me-2"></i> Add to cart
-                                </btn>
+                                </button>
                             </div>
                         </div>
                     </div>

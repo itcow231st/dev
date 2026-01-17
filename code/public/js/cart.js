@@ -5,6 +5,8 @@ $.ajaxSetup({
     }
 });
 
+
+
 /**
  * ADD TO CART
  */
@@ -13,6 +15,8 @@ $(document).on('click', '.add-to-cart', function (e) {
 
     const btn = $(this);
     const url = btn.data('url');
+    const qty = $('.qty-input').val();
+
     btn.prop('disabled', true);
 
     $.ajax({
@@ -20,7 +24,7 @@ $(document).on('click', '.add-to-cart', function (e) {
         method: 'POST',
         data: {
             product_id: btn.data('product-id'),
-            qty: btn.data('qty') || 1
+            qty: qty || 1
         },
         success(res) {
             if (res.status) {

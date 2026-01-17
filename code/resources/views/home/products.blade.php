@@ -129,7 +129,8 @@
                             <!-- Giá + nút -->
                             <div class="d-flex justify-content-between align-items-center">
                                 <p class="text-dark fw-bold fs-5 mb-0">{{ number_format($item->price, 0, ',', '.') }}</p>
-                                <button class="btn border border-secondary rounded-pill px-3 text-primary">
+                                <button class="btn border border-secondary rounded-pill px-3 text-primary add-to-cart"  data-url="{{ route('home.cart.add') }}"
+                                            data-product-id="{{ $item->id }}" data-qty="1">
                                     <i class="fa fa-shopping-bag me-2"></i> Add
                                 </button>
                             </div>

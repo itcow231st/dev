@@ -27,7 +27,7 @@ class ProductService
 
     public function getProductBySlug($slug)
     {
-        return $this->model->find($slug);
+        return $this->model->where('slug', $slug)->firstOrFail();
     }
 
     public function getProductBetsSellers()
@@ -36,6 +36,10 @@ class ProductService
         return $products;
     }
     
+    public function getProductsRelated($categoryId)
+    {
+        return $this->model->where('category_id', $categoryId)->where('id', '!=', $categoryId)->limit(4)->get();
+    }
     public function createProduct(array $data)
     {
         return DB::transaction(function () use ($data) {

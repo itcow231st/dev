@@ -53,7 +53,10 @@ class HomeController extends Controller
 
    public function productDetail($slug)
     {
-        return view('home.product_details', ['slug' => $slug]);
+        $products = $this->productService->getProductBySlug($slug);
+        $prodcutRelated = $this->productService->getProductsRelated($products->category_id);
+        return view('home.product_details', ['slug' => $slug])->with(['products'=>$products
+                                                                    , 'prodcutRelated'=>$prodcutRelated]);          
     }
 
     public function checkout()
@@ -124,13 +127,13 @@ class HomeController extends Controller
     public function interior($slug)
     {
         $interiors = $this->interiorService->getInteriorBySlug($slug);
-        $products = $interiors->products;
-        return redirect()->route('home.products')->with('products',$products);
+        $products = $interiors->products()->paginate(12);
+        return view('home.products')->with('products',$products);
     }
     public function category($slug)
     {
         $categories = $this->categoryService->getCategoryBySlug($slug);
-        $products = $categories->products;
+        $products = $categories->products()->paginate(12);
         return view('home.products', compact('products'));
     }
     public function service()

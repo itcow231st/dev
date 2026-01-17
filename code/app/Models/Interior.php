@@ -27,4 +27,9 @@ class Interior extends Model
     {
         return $this->hasMany(Categories::class, 'interior_id');
     }
+    
+    public function products()
+    {
+        return $this->hasManyThrough(Products::class, Categories::class, 'interior_id', 'category_id');
+    }
 }
