@@ -91,6 +91,23 @@
             font-size: 1.1rem;
             font-weight: bold;
         }
+
+        .category-item {
+    height: 100%;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.category-img img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.category-item h5 {
+    min-height: 48px; /* đảm bảo text ngắn/dài vẫn đều */
+    text-align: center;
+}
+
     </style>
 @endsection
 @section('content')
@@ -250,20 +267,22 @@
                     không gian sống hoàn hảo cho bạn.</p>
             </div>
             <div class="row g-4 justify-content-center category-list">
-                <!-- ITEM -->
                 @foreach ($interiors as $interior)
-                    <div class="col-6 col-md-4 col-lg-3">
+                    <div class="col-12 col-md-4 d-flex">
                         <a href="{{ route('home.interior.show', $interior->slug) }}"
-                            class="category-item text-center d-block p-3">
+                            class="category-item text-center d-flex flex-column w-100 p-3">
                             <div class="category-img">
                                 <img src="{{ config('url.product') . '/' . $interior->image_url }}"
                                     class="img-fluid w-100 rounded" alt="">
                             </div>
-                            <h5 class="mt-3">{{ $interior->name }}</h5>
+                            <h5 class="mt-3 flex-grow-1 d-flex align-items-center justify-content-center">
+                                {{ $interior->name }}
+                            </h5>
                         </a>
                     </div>
                 @endforeach
             </div>
+
         </div>
     </div>
     <!-- Product End -->

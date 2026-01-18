@@ -143,8 +143,8 @@ class HomeController extends Controller
     }
     public function serviceItem($slug)
     {
-        $services = $this->serviceService->getServiceBySlug($slug);
-        return redirect()->route('home.products')->with('products',$services);
+        $service = $this->serviceService->getServiceBySlug($slug);
+        return view('home.service')->with('service',$service);
     }
     
 }

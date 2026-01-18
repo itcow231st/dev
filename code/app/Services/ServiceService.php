@@ -28,7 +28,7 @@ class ServiceService
 
     public function getServiceBySlug($slug)
     {
-        return $this->model->find($slug);
+        return $this->model->where('slug', $slug)->firstOrFail();
     }
 
     public function createService($data)

@@ -81,11 +81,11 @@
                       </div>
 
                       <div class="nav-item dropdown">
-                          <a href="{{ route('home.service') }}" class="nav-link dropdown-toggle"
+                          <a href="#" class="nav-link dropdown-toggle"
                               data-bs-toggle="dropdown">Dịch vụ</a>
                           <div class="dropdown-menu m-0 bg-secondary rounded-0">
                               @foreach ($services as $service)
-                                  <a href="{{ route('home.service.show', $service) }}"
+                                  <a href="{{ route('home.service.show', $service->slug) }}"
                                       class="dropdown-item">{{ $service->name }}</a>
                               @endforeach
                           </div>
