@@ -302,12 +302,12 @@
                 @foreach ($services as $service)
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="service-card text-center p-3">
-                            <a href="#">
-                                <img src="https://bienhieudep.vn/wp-content/uploads/2019/08/bien-mat-dung-alu-chu-nhom.jpg"
+                            <a href="{{ route('home.service.show',$service->slug) }}">
+                                <img src="{{ config('url.product') . '/' . $service->image_url }}"
                                     class="service-img rounded" alt="">
                             </a>
                             <div class="py-3">
-                                <a href="#" class="service-title">{{ $service->name }}</a>
+                                <a href="{{ route('home.service.show',$service->slug) }}" class="service-title">{{ $service->name }}</a>
                             </div>
                         </div>
                     </div>

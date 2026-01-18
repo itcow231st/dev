@@ -1,6 +1,6 @@
 <div class="col-md-3">
     <div class="card service-card h-100 shadow-sm">
-        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d" class="card-img-top">
+        <img src="{{ config('url.product') . '/' . 'services/2026-01-18_1768704157.jpg' }}" class="card-img-top">
         <div class="card-body text-center">
             <h5 class="card-title">Biển LED ma trận</h5>
             <p class="card-text">
@@ -12,7 +12,7 @@
 
 <div class="col-md-3">
     <div class="card service-card h-100 shadow-sm">
-        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475" class="card-img-top">
+        <img src="{{ config('url.product') . '/' . 'services/led-2.png' }}" class="card-img-top">
         <div class="card-body text-center">
             <h5 class="card-title">Biển LED full color</h5>
             <p class="card-text">
@@ -24,7 +24,7 @@
 
 <div class="col-md-3">
     <div class="card service-card h-100 shadow-sm">
-        <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7" class="card-img-top">
+        <img src="{{ config('url.product') . '/' . 'services/led-3.png' }}" class="card-img-top">
         <div class="card-body text-center">
             <h5 class="card-title">LED vẫy – LED chạy chữ</h5>
             <p class="card-text">
@@ -36,7 +36,7 @@
 
 <div class="col-md-3">
     <div class="card service-card h-100 shadow-sm">
-        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085" class="card-img-top">
+        <img src="{{ config('url.product') . '/' . 'services/led-4.png' }}" class="card-img-top">
         <div class="card-body text-center">
             <h5 class="card-title">LED ngoài trời</h5>
             <p class="card-text">
