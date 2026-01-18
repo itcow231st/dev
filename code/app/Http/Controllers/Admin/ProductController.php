@@ -29,28 +29,28 @@ class ProductController extends Controller
         return view('admin.product.index')->with('products', $products);
     }
 
-    public function datatable()
-{
-    $products = Products::with('category');
+//     public function datatable()
+// {
+//     $products = Products::with('category');
 
-    return DataTables::of($products)
-        ->addColumn('image', function ($p) {
-            return '<img src="'.config('url.product').$p->image_url.'" width="80">';
-        })
-        ->addColumn('edit', function ($p) {
-            return '<a href="'.route('admin.product.edit',$p->id).'" class="btn btn-warning btn-sm">Edit</a>';
-        })
-        ->addColumn('remove', function ($p) {
-            return '
-            <form method="POST" action="'.route('admin.product.destroy').'">
-                '.csrf_field().method_field('DELETE').'
-                <input type="hidden" name="id" value="'.$p->id.'">
-                <button class="btn btn-danger btn-sm">Delete</button>
-            </form>';
-        })
-        ->rawColumns(['image','edit','remove'])
-        ->make(true);
-}
+//     return DataTables::of($products)
+//         ->addColumn('image', function ($p) {
+//             return '<img src="'.config('url.product').$p->image_url.'" width="80">';
+//         })
+//         ->addColumn('edit', function ($p) {
+//             return '<a href="'.route('admin.product.edit',$p->id).'" class="btn btn-warning btn-sm">Edit</a>';
+//         })
+//         ->addColumn('remove', function ($p) {
+//             return '
+//             <form method="POST" action="'.route('admin.product.destroy').'">
+//                 '.csrf_field().method_field('DELETE').'
+//                 <input type="hidden" name="id" value="'.$p->id.'">
+//                 <button class="btn btn-danger btn-sm">Delete</button>
+//             </form>';
+//         })
+//         ->rawColumns(['image','edit','remove'])
+//         ->make(true);
+// }
 
     public function create()
     {

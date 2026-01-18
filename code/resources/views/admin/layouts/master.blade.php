@@ -33,5 +33,6 @@
         <script src="{{asset('assets/demo/chart-bar-demo.js')}}"></script>
         <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
         @yield('scripts')
+        @stack('scripts')
     </body>
 </html>

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DataTableController;
 use App\Http\Controllers\Admin\InteriorController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
@@ -51,6 +52,9 @@ Route::name('admin.')->prefix('admin')->group(function () {
 
     Route::middleware([AdminMiddleware::class])->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
+        
+        Route::get('/datatable', [DataTableController::class,'handle'])->name('datatable');
+
         // Interior Routes
         Route::get('/interior', [InteriorController::class, 'index'])->name('interior.index');
         Route::get('/interior/create', [InteriorController::class, 'create'])->name('interior.create');
@@ -86,7 +90,7 @@ Route::name('admin.')->prefix('admin')->group(function () {
         Route::post('/product/update', [ProductController::class, 'update'])->name('product.update');
         Route::delete('/product/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
 
-         Route::get('/products/datatable', [ProductController::class, 'datatable'])->name('product.datatable');
+        //  Route::get('/products/datatable', [ProductController::class, 'datatable'])->name('product.datatable');
 
         //Role Routes
         Route::get('/role', [RoleController::class, 'index'])->name('role.index');
