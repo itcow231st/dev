@@ -9,47 +9,25 @@
         </div>
         <div class="card-body">
             <a href="{{ route('admin.service.create') }}" class="btn btn-primary mb-3">Create New Service</a>
-            <table id="datatablesSimple">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>IMG</th>
-                        <th>Slug</th>
-                        <th>Edit</th>
-                        <th>Remove</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>IMG</th>
-                        <th>Slug</th>
-                        <th>Edit</th>
-                        <th>Remove</th>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    @foreach ($services as $service)
-                        <tr>
-                            <td>{{ $service->id }}</td>
-                            <td>{{ $service->name }}</td>
-                             <td><img src="{{config('url.product') . $service->image_url }}" width="100"></td>
-                            <td>{{ $service->slug }}</td>
-                            <td><a href="{{ route('admin.service.edit', $service->id) }}" class="btn btn-warning">Edit</a></td>
-                            <td>
-                                <form method="POST" action="{{ route('admin.service.destroy') }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="hidden" name="id" value="{{ $service->id }}">
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <x-admin.data-table id="serviceTable" table="services" 
+            :actions="[
+                'image' => [
+                    'field' => 'image_url',
+                    'base' => '/storage/',
+                ],
+                'edit' => [
+                    'route' => 'admin.service.edit',
+                ],
+                'delete' => [
+                    'route' => 'admin.service.destroy',
+                ],
+            ]" :columns="[
+                ['data' => 'id', 'title' => 'ID'],
+                ['data' => 'name', 'title' => 'Name'],
+                ['data' => 'image', 'title' => 'IMG'],
+                ['data' => 'edit', 'title' => 'Edit'],
+                ['data' => 'delete', 'title' => 'Delete'],
+            ]" />
         </div>
     </div>
 @endsection

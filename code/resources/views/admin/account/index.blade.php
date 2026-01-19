@@ -9,53 +9,24 @@
         </div>
         <div class="card-body">
             <a href="{{ route('admin.account.create') }}" class="btn btn-primary mb-3">Create New Account</a>
-            <table id="datatablesSimple">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>SĐT</th>
-                        <th>Address</th>
-                        <th>Role</th>
-                        <th>Edit</th>
-                        <th>Remove</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>SĐT</th>
-                        <th>Address</th>
-                        <th>Role</th>
-                        <th>Edit</th>
-                        <th>Remove</th>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    @foreach ($accounts as $account)
-                        <tr>
-                            <td>{{ $account->id }}</td>
-                            <td>{{ $account->profile?->full_name }}</td>
-                            <td>{{ $account->email}}</td>
-                            <td>{{ $account->profile?->phone_number }}</td>
-                            <td>{{ $account->profile?->address }}</td>
-                            <td>{{ $account->role->name }}</td>
-                            <td><a href="{{ route('admin.account.edit', $account->id) }}" class="btn btn-warning">Edit</a></td>
-                            <td>
-                                <form method="POST" action="{{ route('admin.account.destroy') }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="hidden" name="id" value="{{ $account->id }}">
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+         <x-admin.data-table id="accountTable" table="accounts" 
+            :actions="[
+                'edit' => [
+                    'route' => 'admin.service.edit',
+                ],
+                'delete' => [
+                    'route' => 'admin.service.destroy',
+                ],
+            ]" :columns="[
+                ['data' => 'id', 'title' => 'ID'],
+                ['data' => 'profile.full_name', 'title' => 'Name'],
+                ['data' => 'email', 'title' => 'Email'],
+                ['data' => 'profile.phone_number', 'title' => 'Phone Number'],
+                 ['data' => 'profile.address', 'title' => 'Address'],
+                ['data' => 'role.name', 'title' => 'Role'],
+                ['data' => 'edit', 'title' => 'Edit'],
+                ['data' => 'delete', 'title' => 'Delete'],
+            ]" />
         </div>
     </div>
 @endsection

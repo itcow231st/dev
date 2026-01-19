@@ -18,7 +18,8 @@
         </div>
         <div class="card-body">
             <a href="{{ route('admin.product.create') }}" class="btn btn-primary mb-3">Create New Service</a>
-            <x-admin.data-table id="productsTable" table="products" :actions="[
+            <x-admin.data-table id="productsTable" table="products" 
+            :actions="[
                 'image' => [
                     'field' => 'image_url',
                     'base' => '/storage/',
